@@ -1,0 +1,89 @@
+{
+    "name": {
+        "en": "Luna Inverter"
+    },
+    "class": "solarpanel",
+    "capabilities": [
+        "meter_power.day",
+        "meter_power.month",
+        "meter_power.installed_capacity",
+        "meter_power.total_power",
+        "meter_power.discharge_power",
+        "meter_power.sun_power",
+        "measure_battery"
+    ],
+    "capabilitiesOptions": {
+        "meter_power.day": {
+            "title": {
+                "en": "Daily yield",
+                "nl": "Dagopbrengst"
+            }
+        },
+        "meter_power.month": {
+            "title": {
+                "en": "Monthly yield",
+                "nl": "Maandopbrengst"
+            }
+        },
+        "meter_power.installed_capacity": {
+            "title": {
+                "en": "Installed capacity",
+                "nl": "Installatievermogen"
+            }
+        },
+        "meter_power.total_power": {
+            "title": {
+                "en": "Total power",
+                "nl": "Totale opbrengst"
+            }
+        },
+        "meter_power.discharge_power": {
+            "title": {
+                "en": "Discharge battery power",
+                "nl": "Batterij laad capaciteit"
+            }
+        },
+        "meter_power.sun_power": {
+            "title": {
+                "en": "Current sun yield",
+                "nl": "Huidige Opbrengst zon"
+            }
+        },
+        "measure_battery": {
+            "title": {
+                "en": "Battery SOC",
+                "nl": "Laadniveau batterij"
+            }
+        }
+    },
+    "platforms": [
+        "local",
+        "cloud"
+    ],
+    "connectivity": [],
+    "images": {
+        "small": "{{driverAssetsPath}}/images/small.png",
+        "large": "{{driverAssetsPath}}/images/large.png",
+        "xlarge": "{{driverAssetsPath}}/images/xlarge.png"
+    },
+    "pair": [
+        {
+            "id": "login_credentials",
+            "template": "login_credentials",
+            "navigation": {
+                "next": "list_devices"
+            }
+        },
+        {
+            "id": "list_devices",
+            "template": "list_devices",
+            "navigation": {
+                "next": "add_devices"
+            }
+        },
+        {
+            "id": "add_devices",
+            "template": "add_devices"
+        }
+    ]
+}

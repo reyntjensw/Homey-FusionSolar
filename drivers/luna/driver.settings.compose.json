@@ -1,0 +1,25 @@
+[
+    {
+        "id": "username",
+        "type": "text",
+        "label": {
+            "en": "Huawei username"
+        }
+    },
+    {
+        "id": "password",
+        "type": "password",
+        "label": {
+            "en": "Huawei password"
+        }
+    },
+    {
+        "id": "battery",
+        "type": "checkbox",
+        "value": false,
+        "label": {
+            "en": "Home battery",
+            "nl": "Thuisbatterij"
+        }
+    }
+]

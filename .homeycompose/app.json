@@ -1,0 +1,29 @@
+{
+  "id": "com.huawei.solar",
+  "version": "1.0.0",
+  "compatibility": ">=5.0.0",
+  "sdk": 3,
+  "platforms": [
+    "local",
+    "cloud"
+  ],
+  "name": {
+    "en": "Huawei Solar"
+  },
+  "description": {
+    "en": "Adds support for Huawei Luna solar inverters"
+  },
+  "category": [
+    "energy"
+  ],
+  "permissions": [],
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
+  "author": {
+    "name": "Wouter Reyntjens",
+    "email": "wouter@chismoor.net"
+  }
+}

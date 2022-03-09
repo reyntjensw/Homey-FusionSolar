@@ -1,0 +1,147 @@
+{
+  "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
+  "id": "com.huawei.solar",
+  "version": "1.0.0",
+  "compatibility": ">=5.0.0",
+  "sdk": 3,
+  "platforms": [
+    "local",
+    "cloud"
+  ],
+  "name": {
+    "en": "Huawei Solar"
+  },
+  "description": {
+    "en": "Adds support for Huawei Luna solar inverters"
+  },
+  "category": [
+    "energy"
+  ],
+  "permissions": [],
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
+  "author": {
+    "name": "Wouter Reyntjens",
+    "email": "wouter@chismoor.net"
+  },
+  "drivers": [
+    {
+      "name": {
+        "en": "Luna Inverter"
+      },
+      "class": "solarpanel",
+      "capabilities": [
+        "meter_power.day",
+        "meter_power.month",
+        "meter_power.installed_capacity",
+        "meter_power.total_power",
+        "meter_power.discharge_power",
+        "meter_power.sun_power",
+        "measure_battery"
+      ],
+      "capabilitiesOptions": {
+        "meter_power.day": {
+          "title": {
+            "en": "Daily yield",
+            "nl": "Dagopbrengst"
+          }
+        },
+        "meter_power.month": {
+          "title": {
+            "en": "Monthly yield",
+            "nl": "Maandopbrengst"
+          }
+        },
+        "meter_power.installed_capacity": {
+          "title": {
+            "en": "Installed capacity",
+            "nl": "Installatievermogen"
+          }
+        },
+        "meter_power.total_power": {
+          "title": {
+            "en": "Total power",
+            "nl": "Totale opbrengst"
+          }
+        },
+        "meter_power.discharge_power": {
+          "title": {
+            "en": "Discharge battery power",
+            "nl": "Batterij laad capaciteit"
+          }
+        },
+        "meter_power.sun_power": {
+          "title": {
+            "en": "Current sun yield",
+            "nl": "Huidige Opbrengst zon"
+          }
+        },
+        "measure_battery": {
+          "title": {
+            "en": "Battery SOC",
+            "nl": "Laadniveau batterij"
+          }
+        }
+      },
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "connectivity": [],
+      "images": {
+        "small": "/drivers/luna/assets/images/small.png",
+        "large": "/drivers/luna/assets/images/large.png",
+        "xlarge": "/drivers/luna/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "navigation": {
+            "next": "list_devices"
+          }
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "luna",
+      "settings": [
+        {
+          "id": "username",
+          "type": "text",
+          "label": {
+            "en": "Huawei username"
+          }
+        },
+        {
+          "id": "password",
+          "type": "password",
+          "label": {
+            "en": "Huawei password"
+          }
+        },
+        {
+          "id": "battery",
+          "type": "checkbox",
+          "value": false,
+          "label": {
+            "en": "Home battery",
+            "nl": "Thuisbatterij"
+          }
+        }
+      ]
+    }
+  ]
+}
