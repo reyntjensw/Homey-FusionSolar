@@ -11,7 +11,7 @@ class LunaApi {
 
     async initializeSession() {
         const accountUrl = `${baseUrl}/login`;
-        console.log("begin");
+
         const requestBody = JSON.stringify({
             "userName": this.username,
             "systemCode": this.password
@@ -58,7 +58,6 @@ class LunaApi {
         let bodyData = JSON.stringify({
             "stationCodes": stationCode
         });
-
         const response = await fetch(systemsUrl, {
             method: "POST",
             headers: {

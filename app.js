@@ -9,6 +9,7 @@ class HuaweiSolar extends Homey.App {
      */
     async onInit() {
         this.log('HuaweiSolar has been initialized');
+
     }
 
 }

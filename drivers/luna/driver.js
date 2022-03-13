@@ -10,6 +10,12 @@ class MyDriver extends Driver {
      */
     async onInit() {
         this.log('MyDriver has been initialized');
+
+        // const batteryFull = this.homey.flow.getConditionCard("the-battery-is-full");
+        // batteryFull.registerRunListener(async () => {
+        //     const batteryState = await this.homey.devices.getBatteryState();
+        //     console.log(batteryState);
+        // })
     }
 
     onPair(session) {

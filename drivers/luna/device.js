@@ -93,6 +93,8 @@ class Huawei extends Device {
         this.log('Huawei has been added');
     }
 
+
+
     /**
      * onSettings is called when the user updates the device's settings.
      * @param {object} event the onSettings event data
