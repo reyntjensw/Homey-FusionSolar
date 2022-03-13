@@ -1,5 +1,8 @@
 {
   "1.0.1": {
     "en": "Introducing support for Luna battery"
+  },
+  "1.0.2": {
+    "en": "Changing platform to Homey local"
   }
 }

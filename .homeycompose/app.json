@@ -1,12 +1,11 @@
 {
   "id": "com.huawei.solar",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "compatibility": ">=5.0.0",
   "brandColor": "#0362FA",
   "sdk": 3,
   "platforms": [
-    "local",
-    "cloud"
+    "local"
   ],
   "name": {
     "en": "Huawei Solar"
