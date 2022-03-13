@@ -1,7 +1,8 @@
 {
   "id": "com.huawei.solar",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "compatibility": ">=5.0.0",
+  "brandColor": "#0362FA",
   "sdk": 3,
   "platforms": [
     "local",
@@ -25,5 +26,9 @@
   "author": {
     "name": "Wouter Reyntjens",
     "email": "wouter@chismoor.net"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/reyntjensw/Homey-FusionSolar/issues"
+  },
+  "source": "https://github.com/reyntjensw/Homey-FusionSolar/"
 }
