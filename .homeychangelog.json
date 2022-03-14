@@ -4,5 +4,8 @@
   },
   "1.0.2": {
     "en": "Changing platform to Homey local"
+  },
+  "1.0.3": {
+    "en": "Fixing API header issue"
   }
 }
