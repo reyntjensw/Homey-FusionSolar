@@ -36,6 +36,7 @@ class Huawei extends Device {
         if (this.hasCapability('meter_power.sun_power') === false) {
             await this.addCapability('meter_power.sun_power');
         }
+
         this.getProductionData();
 
         this.homey.setInterval(async () => {
@@ -62,19 +63,30 @@ class Huawei extends Device {
             if (settings.battery == true && devListBatteryId != null) {
                 const devRealKpiBattery = await lunaApi.getDevRealKpi(devListBatteryId["id"], 39);
                 await this.setCapabilityValue('measure_battery', devRealKpiBattery[0].dataItemMap.battery_soc);
+                this.setStoreValue("measure_battery", devRealKpiBattery[0].dataItemMap.battery_soc);
+
                 await this.setCapabilityValue('meter_power.discharge_power', devRealKpiBattery[0].dataItemMap.ch_discharge_power / 1000).catch(this.error);
+                this.setStoreValue("discharge_power", devRealKpiBattery[0].dataItemMap.ch_discharge_power / 1000);
+
             }
 
             if (devListInverterId != null) {
                 const devRealKpiInverter = await lunaApi.getDevRealKpi(devListInverterId["id"], 1);
                 await this.setCapabilityValue('meter_power.sun_power', devRealKpiInverter[0].dataItemMap.mppt_power);
+                this.setStoreValue("sun_power", devRealKpiInverter[0].dataItemMap.mppt_power);
             }
 
             const [basicStatsObj] = await Promise.all([basicStats]);
             if (basicStatsObj != null) {
                 await this.setCapabilityValue('meter_power.day', basicStatsObj.day_power).catch(this.error);
+                this.setStoreValue("yield_day", basicStatsObj.day_power);
+
                 await this.setCapabilityValue('meter_power.month', basicStatsObj.month_power).catch(this.error);
+                this.setStoreValue("yield_month", basicStatsObj.month_power);
+
                 await this.setCapabilityValue('meter_power.total_power', basicStatsObj.total_power).catch(this.error);
+                this.setStoreValue("yield_total_power", basicStatsObj.total_power);
+
                 this.setCapabilityValue('meter_power.installed_capacity', this.getData().capacity).catch(this.error);
             }
 

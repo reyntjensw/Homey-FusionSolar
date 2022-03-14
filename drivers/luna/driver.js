@@ -3,19 +3,52 @@
 const { Driver } = require('homey');
 const { LunaApi } = require('./api');
 
-class MyDriver extends Driver {
+class Luna extends Driver {
 
     /**
      * onInit is called when the driver is initialized.
      */
     async onInit() {
-        this.log('MyDriver has been initialized');
+        this.log('Luna has been initialized');
 
-        // const batteryFull = this.homey.flow.getConditionCard("the-battery-is-full");
-        // batteryFull.registerRunListener(async () => {
-        //     const batteryState = await this.homey.devices.getBatteryState();
-        //     console.log(batteryState);
-        // })
+        try {
+            const cardConditionBatteryFull = this.homey.flow.getConditionCard("the-battery-is-full");
+            cardConditionBatteryFull.registerRunListener(async (args) => {
+                if (args.device.getStoreValue("measure_battery") >= 95) {
+                    return true;
+                } else {
+                    return false;
+                }
+            })
+        } catch (error) {
+            console.log(error);
+        }
+
+        try {
+            const cardConditionBatteryEmpty = this.homey.flow.getConditionCard("the-battery-is-nearly-empty");
+            cardConditionBatteryEmpty.registerRunListener(async (args) => {
+                if (args.device.getStoreValue("measure_battery") <= 10) {
+                    return true;
+                } else {
+                    return false;
+                }
+            })
+        } catch (error) {
+            console.log(error);
+        }
+
+        try {
+            const cardConditionSunIsShining = this.homey.flow.getConditionCard("the-sun-is-still-shining");
+            cardConditionSunIsShining.registerRunListener(async (args) => {
+                if (args.device.getStoreValue("sun_power") * 1000 >= 100) {
+                    return true;
+                } else {
+                    return false;
+                }
+            })
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     onPair(session) {
@@ -87,4 +120,4 @@ class MyDriver extends Driver {
 
 }
 
-module.exports = MyDriver;
+module.exports = Luna;
