@@ -12,7 +12,7 @@
     "en": "Huawei Solar"
   },
   "description": {
-    "en": "Adds support for Huawei Luna solar inverters"
+    "en": "This app allows you to connect and retrieve data from your solar array and solar batteries."
   },
   "category": [
     "energy"

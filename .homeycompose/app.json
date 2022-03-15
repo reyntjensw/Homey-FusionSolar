@@ -1,33 +1,33 @@
 {
-  "id": "com.huawei.solar",
-  "version": "1.0.4",
-  "compatibility": ">=5.0.0",
-  "brandColor": "#0362FA",
-  "sdk": 3,
-  "platforms": [
-    "local"
-  ],
-  "name": {
-    "en": "Huawei Solar"
-  },
-  "description": {
-    "en": "Adds support for Huawei Luna solar inverters"
-  },
-  "category": [
-    "energy"
-  ],
-  "permissions": [],
-  "images": {
-    "small": "/assets/images/small.png",
-    "large": "/assets/images/large.png",
-    "xlarge": "/assets/images/xlarge.png"
-  },
-  "author": {
-    "name": "Wouter Reyntjens",
-    "email": "wouter@chismoor.net"
-  },
-  "bugs": {
-    "url": "https://github.com/reyntjensw/Homey-FusionSolar/issues"
-  },
-  "source": "https://github.com/reyntjensw/Homey-FusionSolar/"
+    "id": "com.huawei.solar",
+    "version": "1.0.4",
+    "compatibility": ">=5.0.0",
+    "brandColor": "#0362FA",
+    "sdk": 3,
+    "platforms": [
+        "local"
+    ],
+    "name": {
+        "en": "Huawei Solar"
+    },
+    "description": {
+        "en": "This app allows you to connect and retrieve data from your solar array and solar batteries."
+    },
+    "category": [
+        "energy"
+    ],
+    "permissions": [],
+    "images": {
+        "small": "/assets/images/small.png",
+        "large": "/assets/images/large.png",
+        "xlarge": "/assets/images/xlarge.png"
+    },
+    "author": {
+        "name": "Wouter Reyntjens",
+        "email": "wouter@chismoor.net"
+    },
+    "bugs": {
+        "url": "https://github.com/reyntjensw/Homey-FusionSolar/issues"
+    },
+    "source": "https://github.com/reyntjensw/Homey-FusionSolar/"
 }
