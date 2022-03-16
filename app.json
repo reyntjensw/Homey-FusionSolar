@@ -12,7 +12,8 @@
     "en": "Huawei Solar"
   },
   "description": {
-    "en": "This app allows you to connect and retrieve data from your solar array and solar batteries."
+    "en": "Smart energy for a better life",
+    "nl": "Slimme energie voor een beter leven"
   },
   "category": [
     "energy"
@@ -31,6 +32,7 @@
     "url": "https://github.com/reyntjensw/Homey-FusionSolar/issues"
   },
   "source": "https://github.com/reyntjensw/Homey-FusionSolar/",
+  "homeyCommunityTopicId": 61745,
   "flow": {
     "conditions": [
       {
