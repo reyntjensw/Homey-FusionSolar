@@ -16,5 +16,8 @@
   },
   "1.0.6": {
     "en": "Fixing images"
+  },
+  "1.0.7": {
+    "en": "Improve error logging"
   }
 }
