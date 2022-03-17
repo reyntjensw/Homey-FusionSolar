@@ -72,10 +72,7 @@
     "pair": [
         {
             "id": "login_credentials",
-            "template": "login_credentials",
-            "navigation": {
-                "next": "list_devices"
-            }
+            "template": "login_credentials"
         },
         {
             "id": "list_devices",

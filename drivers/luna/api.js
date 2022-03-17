@@ -17,6 +17,7 @@ class LunaApi {
             "systemCode": this.password
         });
         const apiData = await this.apiRequest(accountUrl, 'POST', requestBody);
+        return apiData;
     }
 
     async apiRequest(url, methodContent, requestBody) {
@@ -30,11 +31,15 @@ class LunaApi {
         });
 
         const apiData = await apiResponse;
+        const bodyData = await apiData.text();
+
         token = apiData.headers.get('xsrf-token');
-        if (apiData.statusText === 'OK') {
+        if (apiData.statusText === 'OK' && bodyData.length > 0) {
             return true;
+        } else {
+            return false;
         }
-        throw new Error(apiData.status);
+        throw new Error(apiData.text());
     }
 
     async getSystems() {

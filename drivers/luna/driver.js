@@ -55,20 +55,19 @@ class Luna extends Driver {
         let username;
         let password;
         let lunaApi;
-        this.log("begin");
 
         session.setHandler('login', async (data) => {
             try {
                 this.homey.settings.set('username', data.username);
                 this.homey.settings.set('password', data.password);
 
+                console.log("Username :");
                 console.log(data.username);
 
-                lunaApi = new LunaApi(data.username, data.password);
-                this.log("begin");
-                await lunaApi.initializeSession();
+                lunaApi = new LunaApi(username, password);
+                const session = await lunaApi.initializeSession();
 
-                return true;
+                return session;
             } catch (error) {
                 this.error(error);
             }
@@ -78,6 +77,8 @@ class Luna extends Driver {
             try {
                 lunaApi = new LunaApi(username, password);
                 const systems = await lunaApi.getSystems();
+                console.log("systems :");
+                console.log(systems);
 
                 const devices = systems.map(item => ({
                     name: item.stationName,
@@ -88,7 +89,6 @@ class Luna extends Driver {
                     settings: { username, password }
 
                 }));
-                console.debug(devices);
 
                 return devices;
             } catch (error) {
