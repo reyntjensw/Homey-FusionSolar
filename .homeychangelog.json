@@ -19,5 +19,8 @@
   },
   "1.0.7": {
     "en": "Improve error logging"
+  },
+  "1.0.8": {
+    "en": "Issue with username and password is being fixed"
   }
 }
