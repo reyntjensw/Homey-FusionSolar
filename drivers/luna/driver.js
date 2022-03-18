@@ -63,6 +63,8 @@ class Luna extends Driver {
 
                 console.log("Username :");
                 console.log(data.username);
+                username = data.username;
+                password = data.password;
 
                 lunaApi = new LunaApi(username, password);
                 const session = await lunaApi.initializeSession();
