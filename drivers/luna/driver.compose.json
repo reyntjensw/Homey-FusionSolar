@@ -44,7 +44,7 @@
         },
         "meter_power.discharge_power": {
             "title": {
-                "en": "Discharge battery power",
+                "en": "Charge battery power",
                 "nl": "Batterij laad capaciteit"
             }
         },
