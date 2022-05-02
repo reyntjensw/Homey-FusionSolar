@@ -28,5 +28,14 @@
   },
   "1.0.10": {
     "en": "Improve error logging"
+  },
+  "1.0.11": {
+    "en": "Error logging"
+  },
+  "1.0.12": {
+    "en": "Error logging improvement in driver"
+  },
+  "1.0.13": {
+    "en": "Fixing error handling"
   }
 }
