@@ -40,5 +40,8 @@
   },
   "1.0.14": {
     "en": "Improve error logging"
+  },
+  "1.0.15": {
+    "en": "Improving support for non 3 phases systems"
   }
 }
