@@ -43,5 +43,8 @@
   },
   "1.0.15": {
     "en": "Improving support for non 3 phases systems"
+  },
+  "1.0.16": {
+    "en": "Increase cron timer"
   }
 }
