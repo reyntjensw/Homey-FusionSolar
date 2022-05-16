@@ -49,5 +49,8 @@
   },
   "1.0.17": {
     "en": "Introducing sleep to avoid quota limits"
+  },
+  "1.0.18": {
+    "en": "Fixing API endpoint to avoid having quotacontrol issues"
   }
 }
