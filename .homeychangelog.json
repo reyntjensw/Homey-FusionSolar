@@ -52,5 +52,8 @@
   },
   "1.0.18": {
     "en": "Fixing API endpoint to avoid having quotacontrol issues"
+  },
+  "1.0.19": {
+    "en": "Reverting back to old api version"
   }
 }
