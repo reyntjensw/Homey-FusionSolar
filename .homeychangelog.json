@@ -55,5 +55,8 @@
   },
   "1.0.19": {
     "en": "Reverting back to old api version"
+  },
+  "1.0.20": {
+    "en": "Implementing switch for new api. Please check https://community.homey.app/t/huawei-solar/61745/2"
   }
 }
