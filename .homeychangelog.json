@@ -58,5 +58,8 @@
   },
   "1.0.20": {
     "en": "Implementing switch for new api. Please check https://community.homey.app/t/huawei-solar/61745/2"
+  },
+  "1.0.21": {
+    "en": "Fix for updating production values after property change"
   }
 }
