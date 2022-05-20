@@ -98,7 +98,7 @@ class Huawei extends Device {
             if (devListpowerMeterId !== null) {
                 const devRealKpiPowerSensor = await lunaApi.getDevRealKpi(devListpowerMeterId.id, devListpowerMeterId.devTypeId, server);
                 await this.setCapabilityValue('meter_power.import_export', devRealKpiPowerSensor.active_power);
-                this.setStoreValue("import_export", devRealKpiPowerSensor.active_power);
+                this.setStoreValue("import_export", devRealKpiPowerSensor.active_power / 1000);
             }
 
             if (basicStatsObj !== null) {
