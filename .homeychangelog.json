@@ -67,5 +67,8 @@
   },
   "1.0.23": {
     "en": "Improved translation"
+  },
+  "1.0.25": {
+    "en": "Fixing import/export and interval"
   }
 }
