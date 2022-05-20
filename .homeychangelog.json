@@ -61,5 +61,8 @@
   },
   "1.0.21": {
     "en": "Fix for updating production values after property change"
+  },
+  "1.0.22": {
+    "en": "Adding import / export"
   }
 }
