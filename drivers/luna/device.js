@@ -44,7 +44,7 @@ class Huawei extends Device {
 
         this.homey.setInterval(async () => {
             await this.getProductionData();
-        }, 1000 * 60 * 10);
+        }, 1000 * 60 * 2);
 
 
     }
