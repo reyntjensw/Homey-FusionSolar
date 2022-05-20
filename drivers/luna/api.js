@@ -45,10 +45,6 @@ class LunaApi {
         } else {
             return false;
         }
-
-
-
-
     }
 
     async getSystems() {
@@ -99,6 +95,7 @@ class LunaApi {
         const systemsUrl = `${baseUrl}/getDevList`;
         let battery = "";
         let inverter = "";
+        let powerSensor = "";
 
         let bodyData = JSON.stringify({
             "stationCodes": stationCode
@@ -121,16 +118,20 @@ class LunaApi {
                 battery = apiData.data[index];
             }
 
+            if (apiData.data[index]["devName"] !== null && apiData.data[index]["devName"].includes('meter')) {
+                powerSensor = apiData.data[index];
+            }
+
             if (apiData.data[index]["invType"] !== null && apiData.data[index]["invType"].includes("SUN2000-")) {
                 inverter = apiData.data[index];
             }
         }
-        return { battery, inverter };
+        return { battery, inverter, powerSensor };
 
     }
-    async getDevRealKpi(devIds, devTypeId) {
+    async getDevRealKpi(devIds, devTypeId, server) {
 
-        const systemsUrl = `https://intl.fusionsolar.huawei.com/thirdDatahttps://intl.fusionsolar.huawei.com/thirdData/getDevRealKpi`;
+        const systemsUrl = `https://${server}.fusionsolar.huawei.com:31942/thirdData/getDevRealKpi`;
         let bodyData = JSON.stringify({
             "devIds": devIds,
             "devTypeId": devTypeId

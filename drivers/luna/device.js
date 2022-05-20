@@ -33,45 +33,47 @@ class Huawei extends Device {
         if (this.hasCapability('meter_power.discharge_power') === false) {
             await this.addCapability('meter_power.discharge_power');
         }
+        if (this.hasCapability('meter_power.import_export') === false) {
+            await this.addCapability('meter_power.import_export');
+        }
         if (this.hasCapability('meter_power.sun_power') === false) {
             await this.addCapability('meter_power.sun_power');
         }
-        const settings = this.getSettings();
-        let username = settings.username;
-        let password = settings.password;
-        const lunaApi = new LunaApi(username, password);
 
-        await lunaApi.initializeSession();
-
-        this.getProductionData(lunaApi, settings);
+        this.getProductionData();
 
         this.homey.setInterval(async () => {
-            await this.getProductionData(lunaApi, settings);
+            await this.getProductionData();
         }, 1000 * 60 * 10);
 
 
     }
 
-    async getProductionData(lunaApi, settings) {
+    async getProductionData() {
         try {
+            const settings = this.getSettings();
+            let username = settings.username;
+            let password = settings.password;
+            let server = settings.backend_server;
+            console.log(server);
 
+            const lunaApi = new LunaApi(username, password);
+
+            await lunaApi.initializeSession();
             this.log("get Data");
 
             const basicStats = await lunaApi.getBasicStats(this.getData().id);
             const [basicStatsObj] = await Promise.all([basicStats]);
 
-            console.log(basicStatsObj);
+            // console.log(basicStatsObj);
 
             const devListData = await lunaApi.getDevList(this.getData().id);
-            const [devListBatteryId, devListInverterId] = await Promise.all([devListData.battery, devListData.inverter]);
+            const [devListBatteryId, devListInverterId, devListpowerMeterId] = await Promise.all([devListData.battery, devListData.inverter, devListData.powerSensor]);
 
-
-
-            await new Promise(r => setTimeout(r, 60000));
-            console.log("devListBatteryId");
-            console.log(devListBatteryId);
+            // console.log("devListpowerMeterId");
+            // console.log(devListpowerMeterId);
             if (settings.battery == true && devListBatteryId !== null) {
-                const devRealKpiBattery = await lunaApi.getDevRealKpi(devListBatteryId.id, devListBatteryId.devTypeId);
+                const devRealKpiBattery = await lunaApi.getDevRealKpi(devListBatteryId.id, devListBatteryId.devTypeId, server);
 
                 if (devRealKpiBattery !== null) {
                     await this.setCapabilityValue('measure_battery', devRealKpiBattery.battery_soc);
@@ -80,17 +82,23 @@ class Huawei extends Device {
                     await this.setCapabilityValue('meter_power.discharge_power', devRealKpiBattery.ch_discharge_power / 1000).catch(this.error);
                     this.setStoreValue("discharge_power", devRealKpiBattery.ch_discharge_power / 1000);
                 }
-
             }
-            await new Promise(r => setTimeout(r, 60000));
 
-            console.log("devListInverterId");
-            console.log(devListInverterId);
+            // console.log("devListInverterId");
+            // console.log(devListInverterId);
             if (devListInverterId !== null) {
-                const devRealKpiInverter = await lunaApi.getDevRealKpi(devListInverterId.id, devListInverterId.devTypeId);
+                const devRealKpiInverter = await lunaApi.getDevRealKpi(devListInverterId.id, devListInverterId.devTypeId, server);
                 console.log(devRealKpiInverter);
                 await this.setCapabilityValue('meter_power.sun_power', devRealKpiInverter.mppt_power);
                 this.setStoreValue("sun_power", devRealKpiInverter.mppt_power);
+            }
+
+            console.log("devListpowerMeterId");
+            console.log(devListpowerMeterId);
+            if (devListpowerMeterId !== null) {
+                const devRealKpiPowerSensor = await lunaApi.getDevRealKpi(devListpowerMeterId.id, devListpowerMeterId.devTypeId, server);
+                await this.setCapabilityValue('meter_power.import_export', devRealKpiPowerSensor.active_power);
+                this.setStoreValue("import_export", devRealKpiPowerSensor.active_power);
             }
 
             if (basicStatsObj !== null) {
@@ -135,7 +143,7 @@ class Huawei extends Device {
      */
     async onSettings({ oldSettings, newSettings, changedKeys }) {
         this.log('Huawei settings where changed');
-        //this.getProductionData();
+        this.getProductionData();
 
     }
 
