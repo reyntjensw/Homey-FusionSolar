@@ -57,8 +57,8 @@
         },
         "meter_power.import_export": {
             "title": {
-                "en": "Import/Export grid",
-                "nl": "Import/Export stroomnet"
+                "en": "Import(-)/Export(+) grid",
+                "nl": "Import(-)/Export(+) stroomnet"
             }
         },
         "measure_battery": {
