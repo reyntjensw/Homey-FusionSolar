@@ -70,5 +70,8 @@
   },
   "1.0.25": {
     "en": "Fixing import/export and interval"
+  },
+  "1.0.26": {
+    "en": "Minor typo fix"
   }
 }
