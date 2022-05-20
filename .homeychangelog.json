@@ -64,5 +64,8 @@
   },
   "1.0.22": {
     "en": "Adding import / export"
+  },
+  "1.0.23": {
+    "en": "Improved translation"
   }
 }
