@@ -39,7 +39,6 @@ class LunaApi {
         const bodyData = await apiData.text();
 
         token = apiData.headers.get('xsrf-token');
-        console.log(bodyData);
         if (apiData.statusText === 'OK' && bodyData.length > 0) {
             return true;
         } else {
@@ -81,8 +80,6 @@ class LunaApi {
         });
 
         const apiData = await response.json();
-        console.log("apiData");
-        console.log(util.inspect(apiData.data, false, null, true /* enable colors */))
         if (apiData.data !== null) {
             return apiData.data[0].dataItemMap;
         } else {
@@ -122,6 +119,10 @@ class LunaApi {
                 powerSensor = apiData.data[index];
             }
 
+            if (apiData.data[index]["devName"] !== null && apiData.data[index]["devName"].includes('Power Sensor')) {
+                powerSensor = apiData.data[index];
+            }
+
             if (apiData.data[index]["invType"] !== null && apiData.data[index]["invType"].includes("SUN2000-")) {
                 inverter = apiData.data[index];
             }
@@ -147,8 +148,7 @@ class LunaApi {
         });
 
         const apiData = await response.json();
-        console.log("getDevRealKpi");
-        console.log(apiData);
+
         if (apiData.errorCode !== "undefined") {
             if (apiData.data !== 'undefined') {
                 return apiData.data[0].dataItemMap;;
