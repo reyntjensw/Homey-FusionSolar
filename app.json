@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "com.huawei.solar",
-  "version": "1.0.17",
+  "version": "1.0.27",
   "compatibility": ">=5.0.0",
   "brandColor": "#0362FA",
   "sdk": 3,
@@ -92,6 +92,7 @@
         "meter_power.total_power",
         "meter_power.discharge_power",
         "meter_power.sun_power",
+        "meter_power.import_export",
         "measure_battery"
       ],
       "energy": {
@@ -134,6 +135,12 @@
           "title": {
             "en": "Current sun yield",
             "nl": "Huidige Opbrengst zon"
+          }
+        },
+        "meter_power.import_export": {
+          "title": {
+            "en": "Import(-)/Export(+) grid",
+            "nl": "Import(-)/Export(+) stroomnet"
           }
         },
         "measure_battery": {
@@ -192,6 +199,47 @@
             "en": "Home battery",
             "nl": "Thuisbatterij"
           }
+        },
+        {
+          "id": "backend_server",
+          "type": "dropdown",
+          "value": "region01eu5",
+          "label": {
+            "en": "Default server",
+            "nl": "Standaard server"
+          },
+          "values": [
+            {
+              "id": "region01eu5",
+              "label": {
+                "en": "region01eu5"
+              }
+            },
+            {
+              "id": "region02eu5",
+              "label": {
+                "en": "region02eu5"
+              }
+            },
+            {
+              "id": "region03eu5",
+              "label": {
+                "en": "region03eu5"
+              }
+            },
+            {
+              "id": "region04eu5",
+              "label": {
+                "en": "region04eu5"
+              }
+            },
+            {
+              "id": "region05eu5",
+              "label": {
+                "en": "region05eu5"
+              }
+            }
+          ]
         }
       ]
     }

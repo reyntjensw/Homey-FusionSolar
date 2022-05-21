@@ -39,16 +39,11 @@ class LunaApi {
         const bodyData = await apiData.text();
 
         token = apiData.headers.get('xsrf-token');
-        console.log(bodyData);
         if (apiData.statusText === 'OK' && bodyData.length > 0) {
             return true;
         } else {
             return false;
         }
-
-
-
-
     }
 
     async getSystems() {
@@ -85,8 +80,6 @@ class LunaApi {
         });
 
         const apiData = await response.json();
-        console.log("apiData");
-        console.log(util.inspect(apiData.data, false, null, true /* enable colors */))
         if (apiData.data !== null) {
             return apiData.data[0].dataItemMap;
         } else {
@@ -99,6 +92,7 @@ class LunaApi {
         const systemsUrl = `${baseUrl}/getDevList`;
         let battery = "";
         let inverter = "";
+        let powerSensor = "";
 
         let bodyData = JSON.stringify({
             "stationCodes": stationCode
@@ -121,16 +115,24 @@ class LunaApi {
                 battery = apiData.data[index];
             }
 
+            if (apiData.data[index]["devName"] !== null && apiData.data[index]["devName"].includes('meter')) {
+                powerSensor = apiData.data[index];
+            }
+
+            if (apiData.data[index]["devName"] !== null && apiData.data[index]["devName"].includes('Power Sensor')) {
+                powerSensor = apiData.data[index];
+            }
+
             if (apiData.data[index]["invType"] !== null && apiData.data[index]["invType"].includes("SUN2000-")) {
                 inverter = apiData.data[index];
             }
         }
-        return { battery, inverter };
+        return { battery, inverter, powerSensor };
 
     }
-    async getDevRealKpi(devIds, devTypeId) {
+    async getDevRealKpi(devIds, devTypeId, server) {
 
-        const systemsUrl = `https://intl.fusionsolar.huawei.com/thirdDatahttps://intl.fusionsolar.huawei.com/thirdData/getDevRealKpi`;
+        const systemsUrl = `https://${server}.fusionsolar.huawei.com:31942/thirdData/getDevRealKpi`;
         let bodyData = JSON.stringify({
             "devIds": devIds,
             "devTypeId": devTypeId
@@ -146,8 +148,7 @@ class LunaApi {
         });
 
         const apiData = await response.json();
-        console.log("getDevRealKpi");
-        console.log(apiData);
+
         if (apiData.errorCode !== "undefined") {
             if (apiData.data !== 'undefined') {
                 return apiData.data[0].dataItemMap;;

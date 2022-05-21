@@ -49,5 +49,32 @@
   },
   "1.0.17": {
     "en": "Introducing sleep to avoid quota limits"
+  },
+  "1.0.18": {
+    "en": "Fixing API endpoint to avoid having quotacontrol issues"
+  },
+  "1.0.19": {
+    "en": "Reverting back to old api version"
+  },
+  "1.0.20": {
+    "en": "Implementing switch for new api. Please check https://community.homey.app/t/huawei-solar/61745/2"
+  },
+  "1.0.21": {
+    "en": "Fix for updating production values after property change"
+  },
+  "1.0.22": {
+    "en": "Adding import / export"
+  },
+  "1.0.23": {
+    "en": "Improved translation"
+  },
+  "1.0.25": {
+    "en": "Fixing import/export and interval"
+  },
+  "1.0.26": {
+    "en": "Minor typo fix"
+  },
+  "1.0.27": {
+    "en": "Including Power sensor value"
   }
 }

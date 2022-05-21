@@ -10,6 +10,7 @@
         "meter_power.total_power",
         "meter_power.discharge_power",
         "meter_power.sun_power",
+        "meter_power.import_export",
         "measure_battery"
     ],
     "energy": {
@@ -52,6 +53,12 @@
             "title": {
                 "en": "Current sun yield",
                 "nl": "Huidige Opbrengst zon"
+            }
+        },
+        "meter_power.import_export": {
+            "title": {
+                "en": "Import(-)/Export(+) grid",
+                "nl": "Import(-)/Export(+) stroomnet"
             }
         },
         "measure_battery": {
