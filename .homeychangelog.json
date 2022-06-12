@@ -79,5 +79,8 @@
   },
   "1.0.28": {
     "en": "Improve error handling"
+  },
+  "1.0.29": {
+    "en": "Improving error logging and general logging"
   }
 }
