@@ -76,5 +76,8 @@
   },
   "1.0.27": {
     "en": "Including Power sensor value"
+  },
+  "1.0.28": {
+    "en": "Improve error handling"
   }
 }
