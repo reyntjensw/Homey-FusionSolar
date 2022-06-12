@@ -59,7 +59,13 @@ class LunaApi {
             }
         });
         const apiData = await response.json();
-        return apiData.data;
+        console.log("getSystems");
+        console.log(apiData);
+        if (apiData.failCode == 0) {
+            return apiData.data;
+        } else {
+            return null;
+        }
 
     }
 
@@ -80,7 +86,9 @@ class LunaApi {
         });
 
         const apiData = await response.json();
-        if (apiData.data !== null) {
+        console.log("getBasicStats");
+        console.log(apiData);
+        if (apiData.failCode == 0) {
             return apiData.data[0].dataItemMap;
         } else {
             return null;
@@ -108,23 +116,27 @@ class LunaApi {
         });
 
         const apiData = await response.json();
+        console.log("getDevList");
+        console.log(apiData);
+        if (apiData.failCode == 0) {
 
-        for (let index = 0; index < apiData.data.length; index++) {
+            for (let index = 0; index < apiData.data.length; index++) {
 
-            if (apiData.data[index]["devName"] !== null && apiData.data[index]["devName"].includes('Battery')) {
-                battery = apiData.data[index];
-            }
+                if (apiData.data[index]["devName"] !== null && apiData.data[index]["devName"].includes('Battery')) {
+                    battery = apiData.data[index];
+                }
 
-            if (apiData.data[index]["devName"] !== null && apiData.data[index]["devName"].includes('meter')) {
-                powerSensor = apiData.data[index];
-            }
+                if (apiData.data[index]["devName"] !== null && apiData.data[index]["devName"].includes('meter')) {
+                    powerSensor = apiData.data[index];
+                }
 
-            if (apiData.data[index]["devName"] !== null && apiData.data[index]["devName"].includes('Power Sensor')) {
-                powerSensor = apiData.data[index];
-            }
+                if (apiData.data[index]["devName"] !== null && apiData.data[index]["devName"].includes('Power Sensor')) {
+                    powerSensor = apiData.data[index];
+                }
 
-            if (apiData.data[index]["invType"] !== null && apiData.data[index]["invType"].includes("SUN2000-")) {
-                inverter = apiData.data[index];
+                if (apiData.data[index]["invType"] !== null && apiData.data[index]["invType"].includes("SUN2000-")) {
+                    inverter = apiData.data[index];
+                }
             }
         }
         return { battery, inverter, powerSensor };
@@ -148,19 +160,14 @@ class LunaApi {
         });
 
         const apiData = await response.json();
+        console.log("getDevRealKpi");
+        console.log(apiData);
 
-        if (apiData.errorCode !== "undefined") {
-            if (apiData.data !== 'undefined') {
-                return apiData.data[0].dataItemMap;;
-            } else {
-                return null;
-            }
+        if (apiData.failCode == 0) {
+                return apiData.data[0].dataItemMap;
         } else {
             return null;
         }
-
-
-
     }
 }
 
