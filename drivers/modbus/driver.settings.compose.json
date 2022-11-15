@@ -1,0 +1,18 @@
+[
+    {
+        "id": "ip",
+        "type": "text",
+        "label": {
+            "en": "Huawei ip"
+        }
+    },
+    {
+        "id": "battery",
+        "type": "checkbox",
+        "value": false,
+        "label": {
+            "en": "Home battery",
+            "nl": "Thuisbatterij"
+        }
+    }
+]

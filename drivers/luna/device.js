@@ -40,11 +40,11 @@ class Huawei extends Device {
             await this.addCapability('meter_power.sun_power');
         }
 
-        this.getProductionData();
+        // this.getProductionData();
 
-        this.homey.setInterval(async () => {
-            await this.getProductionData();
-        }, 1000 * 60 * 2);
+        // this.homey.setInterval(async () => {
+        //     await this.getProductionData();
+        // }, 1000 * 60 * 2);
 
 
     }

@@ -13,6 +13,10 @@
         "eslint-config-athom": "^3.0.1"
     },
     "dependencies": {
-        "node-fetch": "^2.6.1"
+        "jsmodbus": "^4.0.6",
+        "modbus-stream": "^0.46.0",
+        "modbus-tcp-ip": "^1.0.3",
+        "node-fetch": "^2.6.1",
+        "node-red-contrib-modbustcp": "^1.2.3"
     }
 }

@@ -242,6 +242,126 @@
           ]
         }
       ]
+    },
+    {
+      "name": {
+        "en": "Luna Modbus"
+      },
+      "title": {
+        "en": "Add inverter ip"
+      },
+      "class": "solarpanel",
+      "capabilities": [
+        "meter_power.day",
+        "meter_power.month",
+        "meter_power.installed_capacity",
+        "meter_power.total_power",
+        "meter_power.discharge_power",
+        "meter_power.sun_power",
+        "meter_power.import_export",
+        "measure_battery"
+      ],
+      "energy": {
+        "batteries": [
+          "OTHER"
+        ]
+      },
+      "capabilitiesOptions": {
+        "meter_power.day": {
+          "title": {
+            "en": "Daily yield",
+            "nl": "Dagopbrengst"
+          }
+        },
+        "meter_power.month": {
+          "title": {
+            "en": "Monthly yield",
+            "nl": "Maandopbrengst"
+          }
+        },
+        "meter_power.installed_capacity": {
+          "title": {
+            "en": "Installed capacity",
+            "nl": "Installatievermogen"
+          }
+        },
+        "meter_power.total_power": {
+          "title": {
+            "en": "Total power",
+            "nl": "Totale opbrengst"
+          }
+        },
+        "meter_power.discharge_power": {
+          "title": {
+            "en": "Charge battery power",
+            "nl": "Batterij laad capaciteit"
+          }
+        },
+        "meter_power.sun_power": {
+          "title": {
+            "en": "Current sun yield",
+            "nl": "Huidige Opbrengst zon"
+          }
+        },
+        "meter_power.import_export": {
+          "title": {
+            "en": "Import(-)/Export(+) grid",
+            "nl": "Import(-)/Export(+) stroomnet"
+          }
+        },
+        "measure_battery": {
+          "title": {
+            "en": "Battery SOC",
+            "nl": "Laadniveau batterij"
+          }
+        }
+      },
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [],
+      "images": {
+        "small": "/drivers/modbus/assets/images/small.png",
+        "large": "/drivers/modbus/assets/images/large.png"
+      },
+      "pair": [
+        {
+          "id": "inverter",
+          "navigation": {
+            "next": "list_devices"
+          }
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "modbus",
+      "settings": [
+        {
+          "id": "ip",
+          "type": "text",
+          "label": {
+            "en": "Huawei ip"
+          }
+        },
+        {
+          "id": "battery",
+          "type": "checkbox",
+          "value": false,
+          "label": {
+            "en": "Home battery",
+            "nl": "Thuisbatterij"
+          }
+        }
+      ]
     }
   ]
 }
