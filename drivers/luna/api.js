@@ -109,23 +109,27 @@ class LunaApi {
 
         const apiData = await response.json();
 
-        for (let index = 0; index < apiData.data.length; index++) {
+        try {
+            for (let index = 0; index < apiData.data.length; index++) {
 
-            if (apiData.data[index]["devName"] !== null && apiData.data[index]["devName"].includes('Battery')) {
-                battery = apiData.data[index];
-            }
+                if (apiData.data[index]["devName"] !== null && apiData.data[index]["devName"].includes('Battery')) {
+                    battery = apiData.data[index];
+                }
 
-            if (apiData.data[index]["devName"] !== null && apiData.data[index]["devName"].includes('meter')) {
-                powerSensor = apiData.data[index];
-            }
+                if (apiData.data[index]["devName"] !== null && apiData.data[index]["devName"].includes('meter')) {
+                    powerSensor = apiData.data[index];
+                }
 
-            if (apiData.data[index]["devName"] !== null && apiData.data[index]["devName"].includes('Power Sensor')) {
-                powerSensor = apiData.data[index];
-            }
+                if (apiData.data[index]["devName"] !== null && apiData.data[index]["devName"].includes('Power Sensor')) {
+                    powerSensor = apiData.data[index];
+                }
 
-            if (apiData.data[index]["invType"] !== null && apiData.data[index]["invType"].includes("SUN2000-")) {
-                inverter = apiData.data[index];
+                if ((apiData.data[index]["devName"] !== null && apiData.data[index]["invType"] !== null) && apiData.data[index]["invType"].includes("SUN2000-")) {
+                    inverter = apiData.data[index];
+                }
             }
+        } catch (error) {
+            console.log(error)
         }
         return { battery, inverter, powerSensor };
 

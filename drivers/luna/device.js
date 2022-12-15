@@ -39,6 +39,9 @@ class Huawei extends Device {
         if (this.hasCapability('meter_power.sun_power') === false) {
             await this.addCapability('meter_power.sun_power');
         }
+        if (this.hasCapability('measure_power') === false) {
+            await this.addCapability('measure_power');
+        }
 
         this.getProductionData();
 
@@ -90,6 +93,7 @@ class Huawei extends Device {
                 const devRealKpiInverter = await lunaApi.getDevRealKpi(devListInverterId.id, devListInverterId.devTypeId, server);
                 // console.log(devRealKpiInverter);
                 await this.setCapabilityValue('meter_power.sun_power', devRealKpiInverter.mppt_power);
+                await this.setCapabilityValue('measure_power', devRealKpiInverter.mppt_power);
                 this.setStoreValue("sun_power", devRealKpiInverter.mppt_power);
             }
 
