@@ -11,6 +11,7 @@
         "meter_power.discharge_power",
         "meter_power.sun_power",
         "meter_power.import_export",
+        "measure_power",
         "measure_battery"
     ],
     "energy": {
