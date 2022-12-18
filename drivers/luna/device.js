@@ -112,17 +112,21 @@ class Huawei extends Device {
             if (devListData.inverter !== null && devListData.inverter !== '' && devListData.inverter !== undefined) {
                 const devRealKpiInverter = await lunaApi.getDevRealKpi(devListData.inverter.id, devListData.inverter.devTypeId, server);
                 // console.log('devRealKpiInverter value: ', devRealKpiInverter);
-                await this.setCapabilityValue('meter_power.sun_power', devRealKpiInverter.mppt_power);
-                await this.setCapabilityValue('measure_power', devRealKpiInverter.active_power);
-                this.setStoreValue("sun_power", devRealKpiInverter.mppt_power);
+                if(devRealKpiInverter !== null){
+                    await this.setCapabilityValue('meter_power.sun_power', devRealKpiInverter.mppt_power);
+                    await this.setCapabilityValue('measure_power', devRealKpiInverter.active_power * 1000);
+                    this.setStoreValue("sun_power", devRealKpiInverter.mppt_power);
+                }
             }
 
             // console.log('devListpowerMeterId', devListData.powerSensor);
             if (devListData.powerSensor !== '' && devListData.powerSensor !== null && devListData.powerSensor !== undefined) {
                 const devRealKpiPowerSensor = await lunaApi.getDevRealKpi(devListData.powerSensor.id, devListData.powerSensor.devTypeId, server);
                 // console.log('devRealKpiPowerSensor value: ', devRealKpiPowerSensor);
-                await this.setCapabilityValue('meter_power.import_export', devRealKpiPowerSensor.active_power / 1000);
-                this.setStoreValue("import_export", devRealKpiPowerSensor.active_power / 1000);
+                if(devRealKpiPowerSensor !== null){
+                    await this.setCapabilityValue('meter_power.import_export', devRealKpiPowerSensor.active_power / 1000);
+                    this.setStoreValue("import_export", devRealKpiPowerSensor.active_power / 1000);
+                }
             }
 
             if (!this.getAvailable()) {
