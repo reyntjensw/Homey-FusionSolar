@@ -1,7 +1,4 @@
 const fetch = require('node-fetch');
-const util = require('util');
-
-const { URLSearchParams } = require('url');
 
 const baseUrl = 'https://intl.fusionsolar.huawei.com/thirdData';
 let token;
@@ -20,8 +17,6 @@ class LunaApi {
         });
         const apiData = await this.apiRequest(accountUrl, 'POST', requestBody);
         return apiData;
-
-
     }
 
     async apiRequest(url, methodContent, requestBody) {
@@ -60,10 +55,10 @@ class LunaApi {
         });
         const apiData = await response.json();
         return apiData.data;
-
     }
 
     async getBasicStats(stationCode) {
+
         const systemsUrl = `${baseUrl}/getStationRealKpi`;
 
         let bodyData = JSON.stringify({
@@ -80,7 +75,7 @@ class LunaApi {
         });
 
         const apiData = await response.json();
-        if (apiData.data !== null) {
+        if (apiData.data !== null && apiData.success) {
             return apiData.data[0].dataItemMap;
         } else {
             return null;
@@ -108,29 +103,34 @@ class LunaApi {
         });
 
         const apiData = await response.json();
+        // console.log('apiData getDevList values: ', apiData);
+        if (apiData.success) {
+            try {
+                for (let index = 0; index < apiData.data.length; index++) {
 
-        try {
-            for (let index = 0; index < apiData.data.length; index++) {
+                    if (apiData.data[index]["devName"] !== null && apiData.data[index]["devName"].includes('Battery')) {
+                        battery = apiData.data[index];
+                    }
 
-                if (apiData.data[index]["devName"] !== null && apiData.data[index]["devName"].includes('Battery')) {
-                    battery = apiData.data[index];
+                    if (apiData.data[index]["devName"] !== null && apiData.data[index]["devName"].includes('meter')) {
+                        powerSensor = apiData.data[index];
+                    }
+
+                    if (apiData.data[index]["devName"] !== null && apiData.data[index]["devName"].includes('Power Sensor')) {
+                        powerSensor = apiData.data[index];
+                    }
+
+                    if ((apiData.data[index]["devName"] !== null && apiData.data[index]["invType"] !== null) && apiData.data[index]["invType"].includes("SUN2000-")) {
+                        inverter = apiData.data[index];
+                    }
                 }
-
-                if (apiData.data[index]["devName"] !== null && apiData.data[index]["devName"].includes('meter')) {
-                    powerSensor = apiData.data[index];
-                }
-
-                if (apiData.data[index]["devName"] !== null && apiData.data[index]["devName"].includes('Power Sensor')) {
-                    powerSensor = apiData.data[index];
-                }
-
-                if ((apiData.data[index]["devName"] !== null && apiData.data[index]["invType"] !== null) && apiData.data[index]["invType"].includes("SUN2000-")) {
-                    inverter = apiData.data[index];
-                }
+            } catch (error) {
+                console.log('getDevListData failed with: ', error);
             }
-        } catch (error) {
-            console.log(error)
+        } else {
+            console.log('devListData failed: ', apiData.data);
         }
+
         return { battery, inverter, powerSensor };
 
     }
@@ -152,19 +152,17 @@ class LunaApi {
         });
 
         const apiData = await response.json();
-
-        if (apiData.errorCode !== "undefined") {
+        // console.log('apiData getDevRealKpi values: ', apiData);
+        if (apiData.errorCode !== "undefined" && apiData.success) {
             if (apiData.data !== 'undefined') {
                 return apiData.data[0].dataItemMap;;
             } else {
                 return null;
             }
-        } else {
+        }
+        else {
             return null;
         }
-
-
-
     }
 }
 
