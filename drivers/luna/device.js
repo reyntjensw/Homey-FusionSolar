@@ -93,7 +93,7 @@ class Huawei extends Device {
                 // console.log('id: ', this.getData().id);
                 devListData = await lunaApi.getDevList(this.getData().id);
             }
-            console.log('devListData values: ', devListData);
+            // console.log('devListData values: ', devListData);
 
             // console.log("devListpowerMeterId", devListData.battery);
             if (settings.battery == true && devListData.battery !== null) {
