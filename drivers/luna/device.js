@@ -45,6 +45,13 @@ class Huawei extends Device {
         if (this.hasCapability('meter_power.sun_power') === false) {
             await this.addCapability('meter_power.sun_power');
         }
+        if (this.hasCapability('meter_power.positive_active_energy') === false) {
+            await this.addCapability('meter_power.positive_active_energy');
+        }        
+        if (this.hasCapability('meter_power.negative_active_energy') === false) {
+            await this.addCapability('meter_power.negative_active_energy');
+        }
+        
         if (this.hasCapability('measure_power') === false) {
             await this.addCapability('measure_power');
         }
@@ -116,6 +123,11 @@ class Huawei extends Device {
                     await this.setCapabilityValue('meter_power.sun_power', devRealKpiInverter.mppt_power);
                     await this.setCapabilityValue('measure_power', devRealKpiInverter.active_power * 1000);
                     this.setStoreValue("sun_power", devRealKpiInverter.mppt_power);
+                    
+					await this.setCapabilityValue('meter_power.positive_active_energy', devRealKpiInverter.active_cap);
+					this.setStoreValue("meter_power.positive_active_energy", devRealKpiInverter.active_cap);
+					await this.setCapabilityValue('meter_power.negative_active_energy', devRealKpiInverter.reverse_active_cap);
+					this.setStoreValue("meter_power.negative_active_energy", devRealKpiInverter.reverse_active_cap);
                 }
             }
 
