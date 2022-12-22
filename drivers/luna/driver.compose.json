@@ -8,6 +8,8 @@
         "meter_power.month",
         "meter_power.installed_capacity",
         "meter_power.total_power",
+        "meter_power.positive_active_energy",
+        "meter_power.negative_active_energy",
         "meter_power.discharge_power",
         "meter_power.sun_power",
         "meter_power.import_export",
@@ -44,6 +46,18 @@
             "title": {
                 "en": "Total power",
                 "nl": "Totale opbrengst"
+            }
+        },
+        "meter_power.positive_active_energy": {
+            "title": {
+                "en": "Positive active energy",
+                "nl": "Positive active energy"
+            }
+        },
+        "meter_power.negative_active_energy": {
+            "title": {
+                "en": "Negative active energy",
+                "nl": "Negative active energy"
             }
         },
         "meter_power.discharge_power": {
