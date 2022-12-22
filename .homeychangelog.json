@@ -82,5 +82,8 @@
   },
   "1.0.29": {
     "en": "Changed so devices only fetched once since id is static"
+  },
+  "1.0.30": {
+    "en": "Added inverter internal temprature and panels efficiency"
   }
 }
