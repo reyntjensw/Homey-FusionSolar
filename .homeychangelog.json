@@ -85,5 +85,8 @@
   },
   "1.0.30": {
     "en": "Added inverter internal temprature and panels efficiency"
+  },
+  "1.0.31": {
+    "en": "Added positive_active_energy and negative_active_energy from Power Sensor"
   }
 }

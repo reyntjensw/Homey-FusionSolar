@@ -10,6 +10,8 @@
         "meter_power.total_power",
         "meter_power.discharge_power",
         "meter_power.sun_power",
+        "meter_power.positive_active_energy",
+        "meter_power.negative_active_energy",
         "meter_power.import_export",
         "measure_power",
         "measure_battery",
@@ -58,6 +60,22 @@
                 "nl": "Huidige Opbrengst zon"
             }
         },
+        
+        "meter_power.positive_active_energy": {
+            "title": {
+                "en": "Positive active energy",
+                "nl": "Positieve actieve energie"
+            }
+        },
+        "meter_power.negative_active_energy": {
+            "title": {
+                "en": "Negative active energy",
+                "nl": "Negatieve actieve energie"
+            }
+        },
+        
+        
+        
         "meter_power.import_export": {
             "title": {
                 "en": "Import(-)/Export(+) grid",
