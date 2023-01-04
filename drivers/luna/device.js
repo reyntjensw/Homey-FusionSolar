@@ -107,10 +107,10 @@ class Huawei extends Device {
             }
             // console.log('devListData values: ', devListData);
 
-            // console.log("devListpowerMeterId", devListData.battery);
+            this.log("devListpowerMeterId", devListData.battery);
             if (settings.battery == true && devListData.battery !== null) {
                 const devRealKpiBattery = await lunaApi.getDevRealKpi(devListData.battery.id, devListData.battery.devTypeId, server);
-
+                this.log("devRealKpiBattery", devRealKpiBattery);
                 if (devRealKpiBattery !== null) {
                     await this.setCapabilityValue('measure_battery', devRealKpiBattery.battery_soc);
                     this.setStoreValue("measure_battery", devRealKpiBattery.battery_soc);
