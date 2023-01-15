@@ -31,5 +31,12 @@
         "url": "https://github.com/reyntjensw/Homey-FusionSolar/issues"
     },
     "source": "https://github.com/reyntjensw/Homey-FusionSolar/",
-    "homeyCommunityTopicId": 61745
+    "homeyCommunityTopicId": 61745,
+    "contributing": {
+    "donate": {
+       "githubSponsors": {
+         "username": "reyntjensw"
+       }
+    }
+  }
 }
