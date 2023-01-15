@@ -1,92 +1,98 @@
 {
-    "1.0.1": {
-        "en": "Introducing support for Luna battery"
-    },
-    "1.0.2": {
-        "en": "Changing platform to Homey local"
-    },
-    "1.0.3": {
-        "en": "Fixing API header issue"
-    },
-    "1.0.4": {
-        "en": "Adding condition flow cards"
-    },
-    "1.0.5": {
-        "en": "Fixing icons and images"
-    },
-    "1.0.6": {
-        "en": "Fixing images"
-    },
-    "1.0.7": {
-        "en": "Improve error logging"
-    },
-    "1.0.8": {
-        "en": "Issue with username and password is being fixed"
-    },
-    "1.0.9": {
-        "en": "Added extra error catching"
-    },
-    "1.0.10": {
-        "en": "Improve error logging"
-    },
-    "1.0.11": {
-        "en": "Error logging"
-    },
-    "1.0.12": {
-        "en": "Error logging improvement in driver"
-    },
-    "1.0.13": {
-        "en": "Fixing error handling"
-    },
-    "1.0.14": {
-        "en": "Improve error logging"
-    },
-    "1.0.15": {
-        "en": "Improving support for non 3 phases systems"
-    },
-    "1.0.16": {
-        "en": "Increase cron timer"
-    },
-    "1.0.17": {
-        "en": "Introducing sleep to avoid quota limits"
-    },
-    "1.0.18": {
-        "en": "Fixing API endpoint to avoid having quotacontrol issues"
-    },
-    "1.0.19": {
-        "en": "Reverting back to old api version"
-    },
-    "1.0.20": {
-        "en": "Implementing switch for new api. Please check https://community.homey.app/t/huawei-solar/61745/2"
-    },
-    "1.0.21": {
-        "en": "Fix for updating production values after property change"
-    },
-    "1.0.22": {
-        "en": "Adding import / export"
-    },
-    "1.0.23": {
-        "en": "Improved translation"
-    },
-    "1.0.25": {
-        "en": "Fixing import/export and interval"
-    },
-    "1.0.26": {
-        "en": "Minor typo fix"
-    },
-    "1.0.27": {
-        "en": "Including Power sensor value"
-    },
-    "1.0.28": {
-        "en": "Including Power measure value"
-    },
-    "1.0.29": {
-        "en": "Changed so devices only fetched once since id is static"
-    },
-    "1.0.30": {
-        "en": "Added inverter internal temprature and panels efficiency"
-    },
-    "1.0.39": {
-        "en": "Added positive_active_energy and negative_active_energy from Power Sensor"
-    }
+  "1.0.1": {
+    "en": "Introducing support for Luna battery"
+  },
+  "1.0.2": {
+    "en": "Changing platform to Homey local"
+  },
+  "1.0.3": {
+    "en": "Fixing API header issue"
+  },
+  "1.0.4": {
+    "en": "Adding condition flow cards"
+  },
+  "1.0.5": {
+    "en": "Fixing icons and images"
+  },
+  "1.0.6": {
+    "en": "Fixing images"
+  },
+  "1.0.7": {
+    "en": "Improve error logging"
+  },
+  "1.0.8": {
+    "en": "Issue with username and password is being fixed"
+  },
+  "1.0.9": {
+    "en": "Added extra error catching"
+  },
+  "1.0.10": {
+    "en": "Improve error logging"
+  },
+  "1.0.11": {
+    "en": "Error logging"
+  },
+  "1.0.12": {
+    "en": "Error logging improvement in driver"
+  },
+  "1.0.13": {
+    "en": "Fixing error handling"
+  },
+  "1.0.14": {
+    "en": "Improve error logging"
+  },
+  "1.0.15": {
+    "en": "Improving support for non 3 phases systems"
+  },
+  "1.0.16": {
+    "en": "Increase cron timer"
+  },
+  "1.0.17": {
+    "en": "Introducing sleep to avoid quota limits"
+  },
+  "1.0.18": {
+    "en": "Fixing API endpoint to avoid having quotacontrol issues"
+  },
+  "1.0.19": {
+    "en": "Reverting back to old api version"
+  },
+  "1.0.20": {
+    "en": "Implementing switch for new api. Please check https://community.homey.app/t/huawei-solar/61745/2"
+  },
+  "1.0.21": {
+    "en": "Fix for updating production values after property change"
+  },
+  "1.0.22": {
+    "en": "Adding import / export"
+  },
+  "1.0.23": {
+    "en": "Improved translation"
+  },
+  "1.0.25": {
+    "en": "Fixing import/export and interval"
+  },
+  "1.0.26": {
+    "en": "Minor typo fix"
+  },
+  "1.0.27": {
+    "en": "Including Power sensor value"
+  },
+  "1.0.28": {
+    "en": "Including Power measure value"
+  },
+  "1.0.29": {
+    "en": "Changed so devices only fetched once since id is static"
+  },
+  "1.0.30": {
+    "en": "Added inverter internal temprature and panels efficiency"
+  },
+  "1.0.39": {
+    "en": "Added positive_active_energy and negative_active_energy from Power Sensor"
+  },
+  "1.0.40": {
+    "en": "Adding sponsoring"
+  },
+  "1.0.41": {
+    "en": "Adding sponsoring"
+  }
 }
