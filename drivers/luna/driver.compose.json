@@ -56,11 +56,13 @@
         },
         "meter_power.sun_power": {
             "title": {
-                "en": "Current sun yield",
-                "nl": "Huidige Opbrengst zon"
+                "en": "PV yield",
+                "nl": "Huidige PV Opbrengst"
+            },
+            "units": {
+                "en": "kW"
             }
         },
-        
         "meter_power.positive_active_energy": {
             "title": {
                 "en": "Positive active energy",
@@ -73,9 +75,12 @@
                 "nl": "Negatieve actieve energie"
             }
         },
-        
-        
-        
+        "measure_power": {
+            "title": {
+                "en": "Load",
+                "nl": "Verbruik"
+            }
+        },
         "meter_power.import_export": {
             "title": {
                 "en": "Import(-)/Export(+) grid",
