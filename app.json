@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "com.huawei.solar",
-  "version": "1.0.41",
+  "version": "1.0.42",
   "compatibility": ">=5.0.0",
   "brandColor": "#0362FA",
   "sdk": 3,
@@ -145,8 +145,11 @@
         },
         "meter_power.sun_power": {
           "title": {
-            "en": "Current sun yield",
-            "nl": "Huidige Opbrengst zon"
+            "en": "PV yield",
+            "nl": "Huidige PV Opbrengst"
+          },
+          "units": {
+            "en": "kW"
           }
         },
         "meter_power.positive_active_energy": {
@@ -159,6 +162,12 @@
           "title": {
             "en": "Negative active energy",
             "nl": "Negatieve actieve energie"
+          }
+        },
+        "measure_power": {
+          "title": {
+            "en": "Load",
+            "nl": "Verbruik"
           }
         },
         "meter_power.import_export": {
