@@ -97,5 +97,8 @@
   },
   "1.0.42": {
     "en": "Minor fixes to units and descriptions"
+  },
+  "1.0.43": {
+    "en": "Fixing units"
   }
 }
