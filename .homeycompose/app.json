@@ -1,42 +1,42 @@
 {
-    "id": "com.huawei.solar",
-    "version": "1.0.39",
-    "compatibility": ">=5.0.0",
-    "brandColor": "#0362FA",
-    "sdk": 3,
-    "platforms": [
-        "local"
-    ],
-    "name": {
-        "en": "Huawei Solar"
-    },
-    "description": {
-        "en": "Smart energy for a better life",
-        "nl": "Slimme energie voor een beter leven"
-    },
-    "category": [
-        "energy"
-    ],
-    "permissions": [],
-    "images": {
-        "small": "/assets/images/small.png",
-        "large": "/assets/images/large.png",
-        "xlarge": "/assets/images/xlarge.png"
-    },
-    "author": {
-        "name": "Wouter Reyntjens",
-        "email": "wouter@chismoor.net"
-    },
-    "bugs": {
-        "url": "https://github.com/reyntjensw/Homey-FusionSolar/issues"
-    },
-    "source": "https://github.com/reyntjensw/Homey-FusionSolar/",
-    "homeyCommunityTopicId": 61745,
-    "contributing": {
+  "id": "com.huawei.solar",
+  "version": "1.0.43",
+  "compatibility": ">=5.0.0",
+  "brandColor": "#0362FA",
+  "sdk": 3,
+  "platforms": [
+    "local"
+  ],
+  "name": {
+    "en": "Huawei Solar"
+  },
+  "description": {
+    "en": "Smart energy for a better life",
+    "nl": "Slimme energie voor een beter leven"
+  },
+  "category": [
+    "energy"
+  ],
+  "permissions": [],
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
+  "author": {
+    "name": "Wouter Reyntjens",
+    "email": "wouter@chismoor.net"
+  },
+  "bugs": {
+    "url": "https://github.com/reyntjensw/Homey-FusionSolar/issues"
+  },
+  "source": "https://github.com/reyntjensw/Homey-FusionSolar/",
+  "homeyCommunityTopicId": 61745,
+  "contributing": {
     "donate": {
-       "githubSponsors": {
-         "username": "reyntjensw"
-       }
+      "githubSponsors": {
+        "username": "reyntjensw"
+      }
     }
   }
 }
