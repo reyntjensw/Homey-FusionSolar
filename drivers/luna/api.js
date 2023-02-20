@@ -151,17 +151,22 @@ class LunaApi {
             body: bodyData
         });
 
-        const apiData = await response.json();
-        // console.log('apiData getDevRealKpi values: ', apiData);
-        if (apiData.errorCode !== "undefined" && apiData.success) {
-            if (apiData.data !== 'undefined') {
-                return apiData.data[0].dataItemMap;;
-            } else {
+        try {
+
+            const apiData = await response.json();
+            // console.log('apiData getDevRealKpi values: ', apiData);
+            if (apiData.errorCode !== "undefined" && apiData.success) {
+                if (apiData.data !== 'undefined') {
+                    return apiData.data[0].dataItemMap;;
+                } else {
+                    return null;
+                }
+            }
+            else {
                 return null;
             }
-        }
-        else {
-            return null;
+        } catch (error) {
+            console.log('getDevRealKpi failed with: ', error);
         }
     }
 }

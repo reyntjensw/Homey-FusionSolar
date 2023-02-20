@@ -168,12 +168,18 @@
           "title": {
             "en": "Positive active energy",
             "nl": "Positieve actieve energie"
+          },
+          "units": {
+            "en": "kW"
           }
         },
         "meter_power.negative_active_energy": {
           "title": {
             "en": "Negative active energy",
             "nl": "Negatieve actieve energie"
+          },
+          "units": {
+            "en": "kW"
           }
         },
         "measure_power": {

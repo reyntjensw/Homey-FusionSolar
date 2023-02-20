@@ -28,12 +28,18 @@
             "title": {
                 "en": "Daily yield",
                 "nl": "Dagopbrengst"
+            },
+            "units": {
+                "en": "kW"
             }
         },
         "meter_power.month": {
             "title": {
                 "en": "Monthly yield",
                 "nl": "Maandopbrengst"
+            },
+            "units": {
+                "en": "kW"
             }
         },
         "meter_power.installed_capacity": {
@@ -46,12 +52,18 @@
             "title": {
                 "en": "Total power",
                 "nl": "Totale opbrengst"
+            },
+            "units": {
+                "en": "kW"
             }
         },
         "meter_power.discharge_power": {
             "title": {
                 "en": "Charge battery power",
                 "nl": "Batterij laad capaciteit"
+            },
+            "units": {
+                "en": "kW"
             }
         },
         "meter_power.sun_power": {
@@ -67,12 +79,18 @@
             "title": {
                 "en": "Positive active energy",
                 "nl": "Positieve actieve energie"
+            },
+            "units": {
+                "en": "kW"
             }
         },
         "meter_power.negative_active_energy": {
             "title": {
                 "en": "Negative active energy",
                 "nl": "Negatieve actieve energie"
+            },
+            "units": {
+                "en": "kW"
             }
         },
         "measure_power": {
