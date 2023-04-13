@@ -41,7 +41,7 @@ class LunaApi {
         }
     }
 
-    async getSystems() {
+    async getSystemsOld() {
 
         const systemsUrl = `${baseUrl}/getStationList`;
 
@@ -54,7 +54,38 @@ class LunaApi {
             }
         });
         const apiData = await response.json();
-        return apiData.data;
+        if (apiData.failCode !== "305" && apiData.data !== null && apiData.success) {
+            return apiData.data;
+        } else {
+            return null;
+        }
+    }
+
+    async getSystemsNew() {
+
+        const systemsUrl = `${baseUrl}/stations`;
+
+        const response = await fetch(systemsUrl, {
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json;charset=UTF-8',
+                "XSRF-TOKEN": token,
+            },
+            body:
+                JSON.stringify({
+                    "pageNo": 1
+                })
+        });
+        const apiData = await response.json();
+        console.log("Login list");
+        console.log(apiData);
+        if (apiData.failCode !== "305" && apiData.data !== null && apiData.success) {
+            return apiData.data.list;
+        } else {
+            return null;
+        }
+
     }
 
     async getBasicStats(stationCode) {
@@ -75,7 +106,7 @@ class LunaApi {
         });
 
         const apiData = await response.json();
-        if (apiData.data !== null && apiData.success) {
+        if (apiData.failCode !== "305" && apiData.data !== null && apiData.success) {
             return apiData.data[0].dataItemMap;
         } else {
             return null;
@@ -103,8 +134,8 @@ class LunaApi {
         });
 
         const apiData = await response.json();
-        // console.log('apiData getDevList values: ', apiData);
-        if (apiData.success) {
+        console.log('apiData getDevList values: ', apiData);
+        if (apiData.failCode !== "305" && apiData.success) {
             try {
                 for (let index = 0; index < apiData.data.length; index++) {
 
@@ -113,6 +144,10 @@ class LunaApi {
                     }
 
                     if (apiData.data[index]["devName"] !== null && apiData.data[index]["devName"].includes('meter')) {
+                        powerSensor = apiData.data[index];
+                    }
+
+                    if (apiData.data[index]["devName"] !== null && apiData.data[index]["devName"].includes('Meter-1')) {
                         powerSensor = apiData.data[index];
                     }
 
@@ -131,11 +166,11 @@ class LunaApi {
             console.log('devListData failed: ', apiData.data);
         }
 
-        return { battery, inverter, powerSensor };
+        return { inverter, powerSensor, battery };
 
     }
     async getDevRealKpi(devIds, devTypeId, server) {
-
+        console.log(devIds, devTypeId, server)
         const systemsUrl = `https://${server}.fusionsolar.huawei.com:31942/thirdData/getDevRealKpi`;
         let bodyData = JSON.stringify({
             "devIds": devIds,
@@ -154,8 +189,8 @@ class LunaApi {
         try {
 
             const apiData = await response.json();
-            // console.log('apiData getDevRealKpi values: ', apiData);
-            if (apiData.errorCode !== "undefined" && apiData.success) {
+            console.log('apiData getDevRealKpi values: ', apiData);
+            if (apiData.failCode !== "305" && apiData.errorCode !== "undefined" && apiData.success) {
                 if (apiData.data !== 'undefined') {
                     return apiData.data[0].dataItemMap;;
                 } else {

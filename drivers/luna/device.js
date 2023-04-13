@@ -101,47 +101,44 @@ class Huawei extends Device {
             }
             this.log("get current Data");
 
-            if(devListData.battery === '' && devListData.inverter === '' && devListData.powerSensor === ''){
+            // if (devListData.inverter === '' && devListData.powerSensor === '') {
+            if (Object.entries(devListData).length !== 0 && devListData.inverter === '' && devListData.powerSensor === '' && devListData.battery === '') {
                 // console.log('id: ', this.getData().id);
                 devListData = await lunaApi.getDevList(this.getData().id);
-            }
-            // console.log('devListData values: ', devListData);
 
-            this.log("devListpowerMeterId", devListData.battery);
-            if (settings.battery == true && devListData.battery !== null) {
-                const devRealKpiBattery = await lunaApi.getDevRealKpi(devListData.battery.id, devListData.battery.devTypeId, server);
-                this.log("devRealKpiBattery", devRealKpiBattery);
-                if (devRealKpiBattery !== null) {
-                    await this.setCapabilityValue('measure_battery', devRealKpiBattery.battery_soc);
-                    this.setStoreValue("measure_battery", devRealKpiBattery.battery_soc);
+                this.log('devListData values: ', devListData);
 
-                    await this.setCapabilityValue('meter_power.discharge_power', devRealKpiBattery.ch_discharge_power / 1000).catch(this.error);
-                    this.setStoreValue("discharge_power", devRealKpiBattery.ch_discharge_power / 1000);
+                if (settings.battery == true && devListData.battery !== null) {
+                    const devRealKpiBattery = await lunaApi.getDevRealKpi(devListData.battery.id, devListData.battery.devTypeId, server);
+                    this.log("devRealKpiBattery", devRealKpiBattery);
+                    if (devRealKpiBattery !== null && Object.entries(devRealKpiBattery).length !== 0) {
+                        await this.setCapabilityValue('measure_battery', devRealKpiBattery.battery_soc);
+                        this.setStoreValue("measure_battery", devRealKpiBattery.battery_soc);
+                        await this.setCapabilityValue('meter_power.discharge_power', devRealKpiBattery.ch_discharge_power / 1000).catch(this.error);
+                        this.setStoreValue("discharge_power", devRealKpiBattery.ch_discharge_power / 1000);
+                    }
                 }
-            }
 
-            // console.log('devListInverterId', devListData.inverter);
-            if (devListData.inverter !== null && devListData.inverter !== '' && devListData.inverter !== undefined) {
-                const devRealKpiInverter = await lunaApi.getDevRealKpi(devListData.inverter.id, devListData.inverter.devTypeId, server);
-                // console.log('devRealKpiInverter value: ', devRealKpiInverter);
-                if(devRealKpiInverter !== null){
-                    await this.setCapabilityValue('meter_power.sun_power', devRealKpiInverter.mppt_power);
-                    await this.setCapabilityValue('measure_power', devRealKpiInverter.active_power * 1000);
-                    await this.setCapabilityValue('inverter_temperature', devRealKpiInverter.temperature);
-                    await this.setCapabilityValue('solar_efficiency', devRealKpiInverter.efficiency);
-                    this.setStoreValue("sun_power", devRealKpiInverter.mppt_power);
+                if (devListData.inverter !== null && devListData.inverter !== '' && devListData.inverter !== undefined) {
+                    const devRealKpiInverter = await lunaApi.getDevRealKpi(devListData.inverter.id, devListData.inverter.devTypeId, server);
+                    console.log('devRealKpiInverter value: ', devRealKpiInverter);
+                    if (devRealKpiInverter !== null && Object.entries(devRealKpiInverter).length !== 0) {
+                        await this.setCapabilityValue('meter_power.sun_power', devRealKpiInverter.mppt_power);
+                        await this.setCapabilityValue('measure_power', devRealKpiInverter.active_power * 1000);
+                        await this.setCapabilityValue('inverter_temperature', devRealKpiInverter.temperature);
+                        await this.setCapabilityValue('solar_efficiency', devRealKpiInverter.efficiency);
+                        this.setStoreValue("sun_power", devRealKpiInverter.mppt_power);
+                    }
                 }
-            }
 
-            // console.log('devListpowerMeterId', devListData.powerSensor);
-            if (devListData.powerSensor !== '' && devListData.powerSensor !== null && devListData.powerSensor !== undefined) {
-                const devRealKpiPowerSensor = await lunaApi.getDevRealKpi(devListData.powerSensor.id, devListData.powerSensor.devTypeId, server);
-                // console.log('devRealKpiPowerSensor value: ', devRealKpiPowerSensor);
-                if(devRealKpiPowerSensor !== null){
-                    await this.setCapabilityValue('meter_power.import_export', devRealKpiPowerSensor.active_power / 1000);
-                    await this.setCapabilityValue('meter_power.positive_active_energy', devRealKpiPowerSensor.active_cap);
-                    await this.setCapabilityValue('meter_power.negative_active_energy', devRealKpiPowerSensor.reverse_active_cap);
-                    this.setStoreValue("import_export", devRealKpiPowerSensor.active_power / 1000);
+                if (Object.entries(devListData).length !== 0 && devListData.powerSensor !== '' && devListData.powerSensor !== null && devListData.powerSensor !== undefined) {
+                    const devRealKpiPowerSensor = await lunaApi.getDevRealKpi(devListData.powerSensor.id, devListData.powerSensor.devTypeId, server);
+                    if (Object.entries(devRealKpiPowerSensor).length !== 0 && devRealKpiPowerSensor !== null) {
+                        await this.setCapabilityValue('meter_power.import_export', devRealKpiPowerSensor.active_power / 1000);
+                        await this.setCapabilityValue('meter_power.positive_active_energy', devRealKpiPowerSensor.active_cap);
+                        await this.setCapabilityValue('meter_power.negative_active_energy', devRealKpiPowerSensor.reverse_active_cap);
+                        this.setStoreValue("import_export", devRealKpiPowerSensor.active_power / 1000);
+                    }
                 }
             }
 

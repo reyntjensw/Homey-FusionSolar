@@ -30,7 +30,7 @@
                 "nl": "Dagopbrengst"
             },
             "units": {
-                "en": "kW"
+                "en": "kWh"
             }
         },
         "meter_power.month": {
@@ -39,13 +39,16 @@
                 "nl": "Maandopbrengst"
             },
             "units": {
-                "en": "kW"
+                "en": "kWh"
             }
         },
         "meter_power.installed_capacity": {
             "title": {
                 "en": "Installed capacity",
                 "nl": "Installatievermogen"
+            },
+            "unit": {
+                "en": "kWp"
             }
         },
         "meter_power.total_power": {
@@ -54,7 +57,7 @@
                 "nl": "Totale opbrengst"
             },
             "units": {
-                "en": "kW"
+                "en": "kWh"
             }
         },
         "meter_power.discharge_power": {
@@ -103,6 +106,9 @@
             "title": {
                 "en": "Import(-)/Export(+) grid",
                 "nl": "Import(-)/Export(+) stroomnet"
+            },
+            "units": {
+                "en": "kW"
             }
         },
         "measure_battery": {
