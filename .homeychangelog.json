@@ -109,5 +109,8 @@
   },
   "1.0.47": {
     "en": "Fixing user login"
+  },
+  "1.0.48": {
+    "en": "Fix updating values"
   }
 }
