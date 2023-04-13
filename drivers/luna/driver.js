@@ -78,21 +78,41 @@ class Luna extends Driver {
         session.setHandler('list_devices', async (data) => {
             try {
                 lunaApi = new LunaApi(username, password);
-                const systems = await lunaApi.getSystems();
+                const systemsOld = await lunaApi.getSystemsOld();
+                const systemsNew = await lunaApi.getSystemsNew();
+                var systems = Object;
+                console.log("systemsOld");
+                console.log(systemsOld);
+                console.log("systemsNew");
+                console.log(systemsNew);
+
+                if (systemsOld !== null && Object.entries(systemsOld).length !== 0) {
+                    console.log("Hit old")
+                    systems.plantName = systemsOld.stationName;
+                    systems.plantCode = systemsOld.stationCode;
+                }
+                if (systemsNew !== null && Object.entries(systemsNew).length !== 0) {
+                    console.log("Hit New")
+                    systems = systemsNew;
+                }
                 console.log("systems :");
                 console.log(systems);
+                if (Object.entries(systems).length !== 0) {
 
-                const devices = systems.map(item => ({
-                    name: item.stationName,
-                    data: {
-                        id: item.stationCode,
-                        capacity: item.capacity * 1000,
-                    },
-                    settings: { username, password }
+                    const devices = systems.map(item => ({
+                        name: item.plantName,
+                        data: {
+                            id: item.plantCode,
+                            capacity: item.capacity * 1000,
+                        },
+                        settings: { username, password }
 
-                }));
+                    }));
 
-                return devices;
+                    return devices;
+                } else {
+                    return this.error("No devices found");
+                }
             } catch (error) {
                 this.error(error);
             }

@@ -103,5 +103,11 @@
   },
   "1.0.45": {
     "en": "Fixing units"
+  },
+  "1.0.46": {
+    "en": "Support for newer installations"
+  },
+  "1.0.47": {
+    "en": "Fixing user login"
   }
 }
