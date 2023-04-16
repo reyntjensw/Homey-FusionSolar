@@ -115,5 +115,8 @@
   },
   "1.0.49": {
     "en": "Adding sleep before querying api"
+  },
+  "1.0.50": {
+    "en": "Removing new integration"
   }
 }
