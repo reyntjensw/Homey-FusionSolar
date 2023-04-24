@@ -118,5 +118,8 @@
   },
   "1.0.50": {
     "en": "Removing new integration"
+  },
+  "1.0.52": {
+    "en": "Adding extra driver for new systems"
   }
 }
