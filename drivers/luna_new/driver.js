@@ -1,7 +1,7 @@
 'use strict';
 
 const { Driver } = require('homey');
-const { LunaApi } = require('./api');
+const { LunaApi } = require('../../classes/api.js');
 
 class Luna extends Driver {
 
@@ -60,6 +60,8 @@ class Luna extends Driver {
             try {
                 this.homey.settings.set('username', data.username);
                 this.homey.settings.set('password', data.password);
+                this.homey.settings.set('new', true);
+
 
                 console.log("Username :");
                 console.log(data.username);
@@ -78,47 +80,38 @@ class Luna extends Driver {
         session.setHandler('list_devices', async (data) => {
             try {
                 lunaApi = new LunaApi(username, password);
-                const systemsOld = await lunaApi.getSystemsOld();
-                const systemsNew = await lunaApi.getSystemsNew();
-                var systems = Object;
-                console.log("systemsOld");
-                console.log(systemsOld);
-                console.log("systemsNew");
-                console.log(systemsNew);
-
-                if (systemsOld !== null && Object.entries(systemsOld).length !== 0) {
-                    console.log("Hit old")
-                    systems.plantName = systemsOld.stationName;
-                    systems.plantCode = systemsOld.stationCode;
-                }
-                if (systemsNew !== null && Object.entries(systemsNew).length !== 0) {
-                    console.log("Hit New")
-                    systems = systemsNew;
-                }
-                console.log("systems :");
+                const systems = await lunaApi.getSystemsNew();
                 console.log(systems);
-                if (Object.entries(systems).length !== 0) {
 
-                    const devices = systems.map(item => ({
-                        name: item.plantName,
-                        data: {
-                            id: item.plantCode,
-                            capacity: item.capacity * 1000,
-                        },
-                        settings: { username, password }
+                if (systems !== null && Object.entries(systems).length !== 0) {
+                    console.log("Results from IF")
+                    console.log("systems :");
+                    console.log(systems);
+                    if (Object.entries(systems).length !== 0) {
 
-                    }));
+                        const devices = systems.map(item => ({
+                            name: item.plantName,
+                            data: {
+                                id: item.plantCode,
+                                capacity: item.capacity * 1000,
+                            },
+                            settings: { username, password }
 
-                    return devices;
-                } else {
-                    return this.error("No devices found");
+                        }));
+
+                        return devices;
+                    } else {
+                        return this.error("No devices found");
+                    }
                 }
+
             } catch (error) {
                 this.error(error);
             }
         });
 
     }
+
 
     /**
      * onPairListDevices is called when a user is adding a device

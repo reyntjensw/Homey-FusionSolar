@@ -54,6 +54,7 @@ class LunaApi {
             }
         });
         const apiData = await response.json();
+        console.log(apiData);
         if (apiData.failCode !== "305" && apiData.data !== null && apiData.success) {
             return apiData.data;
         } else {

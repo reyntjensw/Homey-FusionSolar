@@ -1,6 +1,7 @@
 'use strict';
 
 const { Device } = require('homey');
+const { exit } = require('process');
 const { LunaApi } = require('./api');
 
 let devListData = {
@@ -20,6 +21,7 @@ class Huawei extends Device {
         await this.setSettings({
             username: this.homey.settings.get('username'),
             password: this.homey.settings.get('password'),
+            new_system: this.homey.settings.get('new'),
         });
         if (this.hasCapability('meter_power.day') === false) {
             await this.addCapability('meter_power.day');
@@ -73,6 +75,14 @@ class Huawei extends Device {
             const settings = this.getSettings();
             let username = settings.username;
             let password = settings.password;
+            let new_system = "";
+            if (settings.new !== undefined) {
+                console.log("true");
+                new_system = settings.new;
+            } else {
+                console.log("false");
+                new_system = false;
+            }
             let server = settings.backend_server;
             console.log('server: ', server);
 
@@ -107,9 +117,11 @@ class Huawei extends Device {
                 devListData = await lunaApi.getDevList(this.getData().id);
 
                 this.log('devListData values: ', devListData);
+                console.log("devListData");
+                console.log(devListData);
             }
 
-            if (settings.battery == true && devListData.battery !== null) {
+            if (settings.battery == true && devListData.battery !== null && new_system == "false") {
                 const devRealKpiBattery = await lunaApi.getDevRealKpi(devListData.battery.id, devListData.battery.devTypeId, server);
                 this.log("devRealKpiBattery", devRealKpiBattery);
                 if (devRealKpiBattery !== null && Object.entries(devRealKpiBattery).length !== 0) {
@@ -120,10 +132,13 @@ class Huawei extends Device {
                 }
             }
 
-            if (devListData.inverter !== null && devListData.inverter !== '' && devListData.inverter !== undefined) {
+            if (devListData.inverter !== null && devListData.inverter !== '' && devListData.inverter !== undefined && new_system == "false") {
                 const devRealKpiInverter = await lunaApi.getDevRealKpi(devListData.inverter.id, devListData.inverter.devTypeId, server);
-                console.log('devRealKpiInverter value: ', devRealKpiInverter);
+                console.log("entering inverter");
+                console.log(devListData.inverter.id, devListData.inverter.devTypeId, server);
+                console.log(devRealKpiInverter);
                 if (devRealKpiInverter !== null && Object.entries(devRealKpiInverter).length !== 0) {
+                    console.log('devRealKpiInverter value: ', devRealKpiInverter);
                     await this.setCapabilityValue('meter_power.sun_power', devRealKpiInverter.mppt_power);
                     await this.setCapabilityValue('measure_power', devRealKpiInverter.active_power * 1000);
                     await this.setCapabilityValue('inverter_temperature', devRealKpiInverter.temperature);
@@ -132,7 +147,9 @@ class Huawei extends Device {
                 }
             }
 
-            if (Object.entries(devListData).length !== 0 && devListData.powerSensor !== '' && devListData.powerSensor !== null && devListData.powerSensor !== undefined) {
+
+
+            if (Object.entries(devListData).length !== 0 && devListData.powerSensor !== '' && devListData.powerSensor !== null && devListData.powerSensor !== undefined && new_system == "false") {
                 const devRealKpiPowerSensor = await lunaApi.getDevRealKpi(devListData.powerSensor.id, devListData.powerSensor.devTypeId, server);
                 if (Object.entries(devRealKpiPowerSensor).length !== 0 && devRealKpiPowerSensor !== null) {
                     await this.setCapabilityValue('meter_power.import_export', devRealKpiPowerSensor.active_power / 1000);
@@ -141,7 +158,7 @@ class Huawei extends Device {
                     this.setStoreValue("import_export", devRealKpiPowerSensor.active_power / 1000);
                 }
             }
-            
+
 
             if (!this.getAvailable()) {
                 await this.setAvailable();
