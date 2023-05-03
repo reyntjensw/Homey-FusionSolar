@@ -1,55 +1,6 @@
-'use strict';
+const HuaweiDriver = require('../../classes/driver.js');
 
-const { Driver } = require('homey');
-const { LunaApi } = require('../../classes/api.js');
-
-class Luna extends Driver {
-
-    /**
-     * onInit is called when the driver is initialized.
-     */
-    async onInit() {
-        this.log('Luna has been initialized');
-
-        try {
-            const cardConditionBatteryFull = this.homey.flow.getConditionCard("the-battery-is-full");
-            cardConditionBatteryFull.registerRunListener(async (args) => {
-                if (args.device.getStoreValue("measure_battery") >= 95) {
-                    return true;
-                } else {
-                    return false;
-                }
-            })
-        } catch (error) {
-            console.log(error);
-        }
-
-        try {
-            const cardConditionBatteryEmpty = this.homey.flow.getConditionCard("the-battery-is-nearly-empty");
-            cardConditionBatteryEmpty.registerRunListener(async (args) => {
-                if (args.device.getStoreValue("measure_battery") <= 10) {
-                    return true;
-                } else {
-                    return false;
-                }
-            })
-        } catch (error) {
-            console.log(error);
-        }
-
-        try {
-            const cardConditionSunIsShining = this.homey.flow.getConditionCard("the-sun-is-still-shining");
-            cardConditionSunIsShining.registerRunListener(async (args) => {
-                if (args.device.getStoreValue("sun_power") * 1000 >= 100) {
-                    return true;
-                } else {
-                    return false;
-                }
-            })
-        } catch (error) {
-            console.log(error);
-        }
-    }
+class LunaDriver extends HuaweiDriver {
 
     onPair(session) {
         let username;
@@ -116,27 +67,5 @@ class Luna extends Driver {
 
     }
 
-
-    /**
-     * onPairListDevices is called when a user is adding a device
-     * and the 'list_devices' view is called.
-     * This should return an array with the data of devices that are available for pairing.
-     */
-    // async onPairListDevices() {
-    //     return [
-    //         // Example device data, note that `store` is optional
-    //         // {
-    //         //   name: 'My Device',
-    //         //   data: {
-    //         //     id: 'my-device',
-    //         //   },
-    //         //   store: {
-    //         //     address: '127.0.0.1',
-    //         //   },
-    //         // },
-    //     ];
-    // }
-
 }
-
-module.exports = Luna;
+module.exports = LunaDriver;

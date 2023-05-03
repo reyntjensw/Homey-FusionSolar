@@ -1,8 +1,6 @@
-'use strict';
-const { Device } = require('homey');
-const { Huawei } = require('../../classes/device.js');
+const HuaweiDev = require('../../classes/device.js');
 
-class LunaOld extends Device {
+class LunaDevice extends HuaweiDev {
 
 }
-module.exports = LunaOld;
+module.exports = LunaDevice;
