@@ -1,4 +1,5 @@
 const HuaweiDriver = require('../../classes/driver.js');
+const { LunaApi } = require('../../classes/api.js');
 
 class LunaDriver extends HuaweiDriver {
 

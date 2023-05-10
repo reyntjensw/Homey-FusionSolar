@@ -121,7 +121,8 @@ class Huawei extends Device {
                 console.log(devListData);
             }
 
-            if (settings.battery == true && devListData.battery !== null && new_system == "false") {
+            // if (settings.battery == true && devListData.battery !== null && new_system == "false") {
+            if (settings.battery == true && devListData.battery !== null) {
                 const devRealKpiBattery = await lunaApi.getDevRealKpi(devListData.battery.id, devListData.battery.devTypeId, server);
                 this.log("devRealKpiBattery", devRealKpiBattery);
                 if (devRealKpiBattery !== null && Object.entries(devRealKpiBattery).length !== 0) {
@@ -132,7 +133,8 @@ class Huawei extends Device {
                 }
             }
 
-            if (devListData.inverter !== null && devListData.inverter !== '' && devListData.inverter !== undefined && new_system == "false") {
+            // if (devListData.inverter !== null && devListData.inverter !== '' && devListData.inverter !== undefined && new_system == "false") {
+            if (devListData.inverter !== null && devListData.inverter !== '' && devListData.inverter !== undefined) {
                 const devRealKpiInverter = await lunaApi.getDevRealKpi(devListData.inverter.id, devListData.inverter.devTypeId, server);
                 console.log("entering inverter");
                 console.log(devListData.inverter.id, devListData.inverter.devTypeId, server);
@@ -149,7 +151,8 @@ class Huawei extends Device {
 
 
 
-            if (Object.entries(devListData).length !== 0 && devListData.powerSensor !== '' && devListData.powerSensor !== null && devListData.powerSensor !== undefined && new_system == "false") {
+            if (Object.entries(devListData).length !== 0 && devListData.powerSensor !== '' && devListData.powerSensor !== null && devListData.powerSensor !== undefined) {
+                // if (Object.entries(devListData).length !== 0 && devListData.powerSensor !== '' && devListData.powerSensor !== null && devListData.powerSensor !== undefined && new_system == "false") {
                 const devRealKpiPowerSensor = await lunaApi.getDevRealKpi(devListData.powerSensor.id, devListData.powerSensor.devTypeId, server);
                 if (Object.entries(devRealKpiPowerSensor).length !== 0 && devRealKpiPowerSensor !== null) {
                     await this.setCapabilityValue('meter_power.import_export', devRealKpiPowerSensor.active_power / 1000);
