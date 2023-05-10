@@ -39,16 +39,12 @@ class LunaDriver extends HuaweiDriver {
 
                 if (systemsOld !== null && Object.entries(systemsOld).length !== 0) {
                     console.log("Hit old")
-                    systems.plantName = systemsOld.stationName;
-                    systems.plantCode = systemsOld.stationCode;
-                    console.log("systems :");
-                    console.log(systems);
-                    if (Object.entries(systems).length !== 0) {
+                    if (Object.entries(systemsOld).length !== 0) {
 
-                        const devices = systems.map(item => ({
-                            name: item.plantName,
+                        const devices = systemsOld.map(item => ({
+                            name: item.stationName,
                             data: {
-                                id: item.plantCode,
+                                id: item.stationCode,
                                 capacity: item.capacity * 1000,
                             },
                             settings: { username, password }

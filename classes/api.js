@@ -90,6 +90,7 @@ class LunaApi {
     }
 
     async getBasicStats(stationCode) {
+        console.log("token", token);
 
         const systemsUrl = `${baseUrl}/getStationRealKpi`;
 
@@ -135,7 +136,7 @@ class LunaApi {
         });
 
         const apiData = await response.json();
-        console.log('apiData getDevList values: ', apiData);
+        console.log('apiData getDevList values: ', apiData, token);
         if (apiData.failCode !== "305" && apiData.success) {
             try {
                 for (let index = 0; index < apiData.data.length; index++) {
@@ -170,9 +171,11 @@ class LunaApi {
         return { inverter, powerSensor, battery };
 
     }
-    async getDevRealKpi(devIds, devTypeId, server) {
-        console.log(devIds, devTypeId, server)
-        const systemsUrl = `https://${server}.fusionsolar.huawei.com:31942/thirdData/getDevRealKpi`;
+    async getDevRealKpi(devIds, devTypeId) {
+        console.log("token", token);
+
+        // console.log(devIds, devTypeId, server)
+        const systemsUrl = `https://intl.fusionsolar.huawei.com/thirdData/getDevRealKpi`;
         let bodyData = JSON.stringify({
             "devIds": devIds,
             "devTypeId": devTypeId
