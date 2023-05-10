@@ -121,5 +121,8 @@
   },
   "1.0.52": {
     "en": "Adding extra driver for new systems"
+  },
+  "1.0.53": {
+    "en": "Remove new systems check"
   }
 }
