@@ -67,13 +67,11 @@ class Huawei extends Device {
             await this.addCapability('solar_efficiency');
         }
 
-
-
         this.getProductionData();
 
         this.homey.setInterval(async () => {
             await this.getProductionData();
-        }, 1000 * 180);
+        }, 1000 * 61);
     }
 
     async getProductionData() {
@@ -97,13 +95,9 @@ class Huawei extends Device {
             await lunaApi.initializeSession();
             this.log("get basic Data");
             if (Object.entries(basicStatsObj).length !== 0) {
-                this.log("setting does not exist");
                 basicStatsObj = await lunaApi.getBasicStats(this.getData().id);
-            } else {
-                this.log("setting does  exist");
             }
 
-            // console.log('basicStatsObj', basicStatsObj)
             if (basicStatsObj !== null) {
                 if (basicStatsObj.day_power) {
                     await this.setCapabilityValue('meter_power.day', basicStatsObj.day_power).catch(this.error);
@@ -135,11 +129,6 @@ class Huawei extends Device {
                 console.log(devListData);
             }
 
-            // if (settings.battery == true && devListData.battery !== null && new_system == "false") {
-            this.log("settings.battery")
-            this.log(settings.battery)
-            this.log("devListData.battery")
-            this.log(devListData.battery)
             if (settings.battery == true && devListData.battery !== null) {
                 const devRealKpiBattery = await lunaApi.getDevRealKpi(devListData.battery.id, devListData.battery.devTypeId);
                 this.log("devRealKpiBattery", devRealKpiBattery);
@@ -150,7 +139,6 @@ class Huawei extends Device {
                     this.setStoreValue("discharge_power", devRealKpiBattery.ch_discharge_power / 1000);
                 }
             }
-
 
 
             if (devListData.inverter !== null && devListData.inverter !== '' && devListData.inverter !== undefined) {
