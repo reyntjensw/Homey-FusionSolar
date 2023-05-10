@@ -130,5 +130,8 @@
   },
   "1.0.55": {
     "en": "Change timer to 61 instead of 180 "
+  },
+  "1.0.56": {
+    "en": "changing all servers to intl"
   }
 }
