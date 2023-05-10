@@ -127,5 +127,8 @@
   },
   "1.0.54": {
     "en": "Change backend server to intl"
+  },
+  "1.0.55": {
+    "en": "Change timer to 61 instead of 180 "
   }
 }
