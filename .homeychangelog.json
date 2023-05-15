@@ -133,5 +133,8 @@
   },
   "1.0.56": {
     "en": "changing all servers to intl"
+  },
+  "1.0.57": {
+    "en": "Revert back server config"
   }
 }
