@@ -45,6 +45,21 @@ class LunaDevice extends Device {
         if (this.hasCapability('meter_power.total_power') === false) {
             await this.addCapability('meter_power.total_power');
         }
+        if (this.hasCapability('meter_power.fed_to_grid') === false) {
+            await this.addCapability('meter_power.fed_to_grid');
+        }
+        if (this.hasCapability('meter_power.import_from_grid') === false) {
+            await this.addCapability('meter_power.import_from_grid');
+        }
+        if (this.hasCapability('meter_power.battery_discharge') === false) {
+            await this.addCapability('meter_power.battery_discharge');
+        }
+        if (this.hasCapability('meter_power.battery_charge') === false) {
+            await this.addCapability('meter_power.battery_charge');
+        }
+        if (this.hasCapability('meter_power.battery_cumulative_discharge') === false) {
+            await this.addCapability('meter_power.battery_cumulative_discharge');
+        }
         // if (this.hasCapability('measure_battery') === false) {
         //     await this.addCapability('measure_battery');
         // }
@@ -90,16 +105,19 @@ class LunaDevice extends Device {
 
     async getProductionData() {
         try {
+            console.log("battery")
+            console.log(settings.battery);
             // await lunaApi.getSystems();
             // await lunaApi.getDeviceIds(this.getData().id);
             //station code NE=33687631
-            // await lunaApi.getPlantStats("NE=33586204");
+            // await lunaApi.getPlantStats("NE=33687631");
             powerStatsObj = await lunaApi.getPowerStatus();
-            console.log(powerStatsObj)
+            // console.log(powerStatsObj)
             // setTimeout(function () {
             //     console.log('Third log message - after 5 second');
             // }, 5000);
             detailStatsObj = await lunaApi.getStationList();
+            // console.log(detailStatsObj)
             // console.log(detailStatsObj)
             // plantStatsObj = await lunaApi.getPlantStats(detailStatsObj.dn);
             // console.log(plantStatsObj)
@@ -124,12 +142,31 @@ class LunaDevice extends Device {
                 await this.setCapabilityValue('meter_power.total_power', powerStatsObj.cumulativeEnergy).catch(this.error);
                 this.setStoreValue("yield_total_power", powerStatsObj.cumulativeEnergy);
             }
-            if (powerStatsObj.inverterPower) {
-                this.setCapabilityValue('meter_power.capacity', powerStatsObj.inverterPower * 1000).catch(this.error);
+            if (powerStatsObj.installedCapacity) {
+                this.setCapabilityValue('meter_power.capacity', powerStatsObj.installedCapacity * 1000).catch(this.error);
+            }
+            if (detailStatsObj.rptNrgKpi.dailyNrg.onGridNrg) {
+                await this.setCapabilityValue('meter_power.fed_to_grid', Number(detailStatsObj.rptNrgKpi.dailyNrg.onGridNrg)).catch(this.error);
+                this.setStoreValue("fed_to_grid", Number(detailStatsObj.rptNrgKpi.dailyNrg.onGridNrg));
+            }
+            if (detailStatsObj.realNrgKpi.dailyNrg.buyNrg) {
+                await this.setCapabilityValue('meter_power.import_from_grid', Number(detailStatsObj.realNrgKpi.dailyNrg.buyNrg)).catch(this.error);
+                this.setStoreValue("import_from_grid", Number(detailStatsObj.realNrgKpi.dailyNrg.buyNrg));
             }
 
             if (settings.battery == true) {
-
+                if (detailStatsObj.rptNrgKpi.dailyNrg.disNrg) {
+                    await this.setCapabilityValue('meter_power.battery_discharge', Number(detailStatsObj.rptNrgKpi.dailyNrg.disNrg)).catch(this.error);
+                    this.setStoreValue("battery_discharge", Number(detailStatsObj.rptNrgKpi.dailyNrg.disNrg));
+                }
+                if (powerStatsObj.cumulativeDisChargeCapacity) {
+                    await this.setCapabilityValue('meter_power.battery_cumulative_discharge', Number(powerStatsObj.cumulativeDisChargeCapacity)).catch(this.error);
+                    this.setStoreValue("battery_cumulative_discharge", Number(powerStatsObj.cumulativeDisChargeCapacity));
+                }
+                if (detailStatsObj.realNrgKpi.dailyNrg.chgNrg) {
+                    await this.setCapabilityValue('meter_power.battery_charge', Number(detailStatsObj.realNrgKpi.dailyNrg.chgNrg)).catch(this.error);
+                    this.setStoreValue("battery_charge", Number(detailStatsObj.realNrgKpi.dailyNrg.chgNrg));
+                }
                 // await this.setCapabilityValue('measure_battery', devRealKpiBattery.battery_soc);
                 // this.setStoreValue("measure_battery", devRealKpiBattery.battery_soc);
                 // await this.setCapabilityValue('meter_power.discharge_power', devRealKpiBattery.ch_discharge_power / 1000).catch(this.error);
@@ -148,6 +185,10 @@ class LunaDevice extends Device {
             this.error(`Unavailable (${error})`);
             this.setUnavailable(`Error retrieving data (${error})`);
         }
+    }
+    async onSettings({ oldSettings, newSettings, changedKeys }) {
+        this.log('Huawei settings where changed');
+        this.getProductionData();
     }
 }
 module.exports = LunaDevice;

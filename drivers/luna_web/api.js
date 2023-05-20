@@ -148,7 +148,7 @@ class LunaApi {
                 const res = await client
                     .get("https://" + this.server + ".fusionsolar.huawei.com/rest/pvms/web/station/v1/station/total-real-kpi?" + params.toString(), { withCredentials: true }
                     );
-                console.log(res.data.data);
+                // console.log(res.data.data);
                 return res
 
             } catch (error) {
@@ -167,9 +167,9 @@ class LunaApi {
     async getStationList() {
         let date_ob = new Date();
         var cookies_reg = await jar.getCookies("https://region01eu5.fusionsolar.huawei.com/");
-        console.log(cookies_reg)
+        // console.log(cookies_reg)
         const roarand = String(cookies_reg.find(element => element.key === 'roarand'))
-        console.log(roarand)
+        // console.log(roarand)
         client.defaults.headers.Cookie = cookies_reg;
 
 
@@ -183,7 +183,6 @@ class LunaApi {
                 },
 
             };
-            console.log(config)
             const data = JSON.stringify({
                 "curPage": 1,
                 "pageSize": 10,
@@ -215,41 +214,41 @@ class LunaApi {
         return response.data.data.list[0]
     }
 
-    // async getDeviceIds(company_id) {
-    //     const params = new URLSearchParams({})
-    //     params.append("_", Math.round(Date.now()))
-    //     params.append("conditionParams.parentDn", company_id)
-    //     params.append("conditionParams.mocTypes", "20814,20815,20816,20819,20822,50017,60066,60014,60015,23037")
-    //     // const config = {
-    //     //     headers: Object.fromEntries(map)
+    async getDeviceIds(company_id) {
+        const params = new URLSearchParams({})
+        params.append("_", Math.round(Date.now()))
+        params.append("conditionParams.parentDn", company_id)
+        params.append("conditionParams.mocTypes", "20814,20815,20816,20819,20822,50017,60066,60014,60015,23037")
+        // const config = {
+        //     headers: Object.fromEntries(map)
 
-    //     // };
+        // };
 
-    //     const sendRequest = async () => {
+        const sendRequest = async () => {
 
-    //         try {
-    //             const res = await client
-    //                 .get("https://" + this.server + ".fusionsolar.huawei.com/rest/neteco/web/config/device/v1/device-list?" + params.toString());
-    //             console.log(res.data);
-    //             return res
+            try {
+                const res = await client
+                    .get("https://" + this.server + ".fusionsolar.huawei.com/rest/neteco/web/config/device/v1/device-list?" + params.toString());
+                console.log(res.data);
+                return res
 
-    //         } catch (error) {
-    //             console.log(error)
-    //         }
-    //     };
+            } catch (error) {
+                console.log(error)
+            }
+        };
 
-    //     const response = await sendRequest();
-    //     const map = new Map()
-    //     for (const val of response.data.data) {
-    //         map.set(val["mocTypeName"], val["dn"])
-    //     }
-    //     console.log(map)
+        const response = await sendRequest();
+        const map = new Map()
+        for (const val of response.data.data) {
+            map.set(val["mocTypeName"], val["dn"])
+        }
+        console.log(map)
 
-    //     if (response.status !== 200) {
-    //         console.error("getPowerStatus failed");
-    //     }
-    //     return map
-    // }
+        if (response.status !== 200) {
+            console.error("getPowerStatus failed");
+        }
+        return map
+    }
     //not usefull
     // async getPlantFlow(station_id) {
     //     const params = new URLSearchParams({})
@@ -300,7 +299,7 @@ class LunaApi {
             try {
                 const res = await client
                     .get("https://" + this.server + ".fusionsolar.huawei.com/rest/pvms/web/station/v1/overview/energy-balance?" + params.toString());
-                //console.log(res);
+                console.log(res);
                 return res
 
             } catch (error) {

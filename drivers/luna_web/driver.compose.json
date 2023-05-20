@@ -8,7 +8,12 @@
         "meter_power.month",
         "meter_power.capacity",
         "meter_power.total_power",
-        "meter_power.sun_power"
+        "meter_power.sun_power",
+        "meter_power.fed_to_grid",
+        "meter_power.import_from_grid",
+        "meter_power.battery_discharge",
+        "meter_power.battery_charge",
+        "meter_power.battery_cumulative_discharge"
     ],
     "energy": {
         "batteries": [
@@ -39,7 +44,7 @@
                 "en": "Installed capacity",
                 "nl": "Installatievermogen"
             },
-            "unit": {
+            "units": {
                 "en": "kWp"
             }
         },
@@ -59,6 +64,37 @@
             },
             "units": {
                 "en": "kW"
+            }
+        },
+        "meter_power.fed_to_grid": {
+            "title": {
+                "en": "Export to grid"
+            },
+            "units": {
+                "en": "kW"
+            }
+        },
+        "meter_power.import_from_grid": {
+            "title": {
+                "en": "Import from grid"
+            },
+            "units": {
+                "en": "kW"
+            }
+        },
+        "meter_power.battery_discharge": {
+            "title": {
+                "en": "Battery discharge today"
+            }
+        },
+        "meter_power.battery_charge": {
+            "title": {
+                "en": "Battery charge today"
+            }
+        },
+        "meter_power.battery_cumulative_discharge": {
+            "title": {
+                "en": "Battery cumulative discharge"
             }
         }
     },
