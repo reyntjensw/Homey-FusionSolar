@@ -54,6 +54,7 @@ class LunaApi {
             }
         });
         const apiData = await response.json();
+        console.log(apiData);
         if (apiData.failCode !== "305" && apiData.data !== null && apiData.success) {
             return apiData.data;
         } else {
@@ -89,6 +90,7 @@ class LunaApi {
     }
 
     async getBasicStats(stationCode) {
+        console.log("token", token);
 
         const systemsUrl = `${baseUrl}/getStationRealKpi`;
 
@@ -134,7 +136,7 @@ class LunaApi {
         });
 
         const apiData = await response.json();
-        console.log('apiData getDevList values: ', apiData);
+        console.log('apiData getDevList values: ', apiData, token);
         if (apiData.failCode !== "305" && apiData.success) {
             try {
                 for (let index = 0; index < apiData.data.length; index++) {
@@ -170,8 +172,11 @@ class LunaApi {
 
     }
     async getDevRealKpi(devIds, devTypeId, server) {
-        console.log(devIds, devTypeId, server)
+        console.log("token", token);
+
+        // console.log(devIds, devTypeId, server)
         const systemsUrl = `https://${server}.fusionsolar.huawei.com:31942/thirdData/getDevRealKpi`;
+
         let bodyData = JSON.stringify({
             "devIds": devIds,
             "devTypeId": devTypeId

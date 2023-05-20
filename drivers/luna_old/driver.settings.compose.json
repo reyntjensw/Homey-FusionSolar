@@ -1,0 +1,66 @@
+[
+    {
+        "id": "username",
+        "type": "text",
+        "label": {
+            "en": "Huawei username"
+        }
+    },
+    {
+        "id": "password",
+        "type": "password",
+        "label": {
+            "en": "Huawei password"
+        }
+    },
+    {
+        "id": "battery",
+        "type": "checkbox",
+        "value": false,
+        "label": {
+            "en": "Home battery",
+            "nl": "Thuisbatterij"
+        }
+    },
+    {
+        "id": "backend_server",
+        "type": "dropdown",
+        "value": "region01eu5",
+        "label": {
+            "en": "Default server",
+            "nl": "Standaard server"
+        },
+        "values": [
+            {
+                "id": "region01eu5",
+                "label": {
+                    "en": "region01eu5"
+                }
+            },
+            {
+                "id": "region02eu5",
+                "label": {
+                    "en": "region02eu5"
+                }
+            },
+            {
+                "id": "region03eu5",
+                "label": {
+                    "en": "region03eu5"
+                }
+            },
+            {
+                "id": "region04eu5",
+                "label": {
+                    "en": "region04eu5"
+                }
+            },
+            {
+                "id": "region05eu5",
+                "label": {
+                    "en": "region05eu5"
+                }
+            }
+        ]
+    }
+]
