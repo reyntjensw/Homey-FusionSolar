@@ -145,5 +145,8 @@
   },
   "2.0.2": {
     "en": "Adding more properties"
+  },
+  "2.0.3": {
+    "en": "Adding SOC for battery"
   }
 }
