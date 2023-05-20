@@ -247,42 +247,43 @@ class LunaApi {
         if (response.status !== 200) {
             console.error("getPowerStatus failed");
         }
-        return map
+        console.log(response.data.data[1]["stationKey"])
+        return response.data.data[1]["stationKey"]
     }
     //not usefull
-    // async getPlantFlow(station_id) {
-    //     const params = new URLSearchParams({})
-    //     params.append("stationDn", station_id)
-    //     params.append("_", Math.round(Date.now()))
+    async getPlantFlow(station_id) {
+        const params = new URLSearchParams({})
+        params.append("stationDn", station_id)
+        params.append("_", Math.round(Date.now()))
 
-    //     const sendRequest = async () => {
+        const sendRequest = async () => {
 
-    //         try {
-    //             const res = await client
-    //                 .get("https://" + this.server + ".fusionsolar.huawei.com/rest/pvms/web/station/v1/overview/energy-flow?" + params.toString());
-    //             // console.log(res);
-    //             return res
+            try {
+                const res = await client
+                    .get("https://" + this.server + ".fusionsolar.huawei.com/rest/pvms/web/station/v1/overview/energy-flow?" + params.toString());
+                // console.log(res);
+                return res
 
-    //         } catch (error) {
-    //             console.log(error)
-    //         }
-    //     };
+            } catch (error) {
+                console.log(error)
+            }
+        };
 
-    //     const response = await sendRequest();
-    //     console.log(response.data.data.flow)
-    //     // const map = new Map()
-    //     // for (const val of response.data.data) {
-    //     //     map.set(val["mocTypeName"], val["dn"])
-    //     // }
-    //     // console.log(map)
+        const response = await sendRequest();
+        // console.log(response.data.data.flow)
+        // const map = new Map()
+        // for (const val of response.data.data) {
+        //     map.set(val["mocTypeName"], val["dn"])
+        // }
+        // console.log(map)
 
-    //     if (response.status !== 200) {
-    //         console.error("getPlantFlow failed");
-    //     }
+        if (response.status !== 200) {
+            console.error("getPlantFlow failed");
+        }
 
-    //     return response.data.data.flow
-    //     // return map
-    // }
+        return response.data.data
+        // return map
+    }
 
 
     async getPlantStats(plant_id) {

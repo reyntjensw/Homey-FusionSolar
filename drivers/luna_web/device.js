@@ -60,9 +60,9 @@ class LunaDevice extends Device {
         if (this.hasCapability('meter_power.battery_cumulative_discharge') === false) {
             await this.addCapability('meter_power.battery_cumulative_discharge');
         }
-        // if (this.hasCapability('measure_battery') === false) {
-        //     await this.addCapability('measure_battery');
-        // }
+        if (this.hasCapability('measure_battery') === false) {
+            await this.addCapability('measure_battery');
+        }
         // if (this.hasCapability('meter_power.discharge_power') === false) {
         //     await this.addCapability('meter_power.discharge_power');
         // }
@@ -71,6 +71,9 @@ class LunaDevice extends Device {
         // }
         if (this.hasCapability('meter_power.sun_power') === false) {
             await this.addCapability('meter_power.sun_power');
+        }
+        if (this.hasCapability('meter_power.active_power') === false) {
+            await this.addCapability('meter_power.active_power');
         }
         // if (this.hasCapability('meter_power.positive_active_energy') === false) {
         //     await this.addCapability('meter_power.positive_active_energy');
@@ -108,27 +111,15 @@ class LunaDevice extends Device {
             console.log("battery")
             console.log(settings.battery);
             // await lunaApi.getSystems();
-            // await lunaApi.getDeviceIds(this.getData().id);
+            const stationKey = await lunaApi.getDeviceIds(this.getData().id);
             //station code NE=33687631
-            // await lunaApi.getPlantStats("NE=33687631");
+            const powerInfo = await lunaApi.getPlantFlow(stationKey);
+            // console.log(powerInfo.flow["nodes"])
+
             powerStatsObj = await lunaApi.getPowerStatus();
-            // console.log(powerStatsObj)
-            // setTimeout(function () {
-            //     console.log('Third log message - after 5 second');
-            // }, 5000);
+
             detailStatsObj = await lunaApi.getStationList();
-            // console.log(detailStatsObj)
-            // console.log(detailStatsObj)
-            // plantStatsObj = await lunaApi.getPlantStats(detailStatsObj.dn);
-            // console.log(plantStatsObj)
-            // const arr = Array.from(detailStatsObj.dailyNrg, ([key, value]) => {
-            //     return { [key]: value };
-            // });
-            // console.log(arr)
-            // for (const val of detailStatsObj.dailyNrg) {
-            //     console.log("line")
-            //     console.log(val)
-            // }
+
 
             if (detailStatsObj.realNrgKpi.dailyNrg) {
                 await this.setCapabilityValue('meter_power.day', Number(detailStatsObj.realNrgKpi.dailyNrg.pvNrg)).catch(this.error);
@@ -153,6 +144,10 @@ class LunaDevice extends Device {
                 await this.setCapabilityValue('meter_power.import_from_grid', Number(detailStatsObj.realNrgKpi.dailyNrg.buyNrg)).catch(this.error);
                 this.setStoreValue("import_from_grid", Number(detailStatsObj.realNrgKpi.dailyNrg.buyNrg));
             }
+            if (powerInfo.flow["nodes"][1]["deviceTips"]["ACTIVE_POWER"]) {
+                await this.setCapabilityValue('meter_power.active_power', Number(powerInfo.flow["nodes"][1]["deviceTips"]["ACTIVE_POWER"])).catch(this.error);
+                this.setStoreValue("active_power", Number(powerInfo.flow["nodes"][1]["deviceTips"]["ACTIVE_POWER"]));
+            }
 
             if (settings.battery == true) {
                 if (detailStatsObj.rptNrgKpi.dailyNrg.disNrg) {
@@ -167,6 +162,8 @@ class LunaDevice extends Device {
                     await this.setCapabilityValue('meter_power.battery_charge', Number(detailStatsObj.realNrgKpi.dailyNrg.chgNrg)).catch(this.error);
                     this.setStoreValue("battery_charge", Number(detailStatsObj.realNrgKpi.dailyNrg.chgNrg));
                 }
+                await this.setCapabilityValue('measure_battery', Number(powerInfo.flow["nodes"][4]['deviceTips']['SOC']));
+                this.setStoreValue("measure_battery", Number(powerInfo.flow["nodes"][4]['deviceTips']['SOC']));
                 // await this.setCapabilityValue('measure_battery', devRealKpiBattery.battery_soc);
                 // this.setStoreValue("measure_battery", devRealKpiBattery.battery_soc);
                 // await this.setCapabilityValue('meter_power.discharge_power', devRealKpiBattery.ch_discharge_power / 1000).catch(this.error);

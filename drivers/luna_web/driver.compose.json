@@ -13,7 +13,9 @@
         "meter_power.import_from_grid",
         "meter_power.battery_discharge",
         "meter_power.battery_charge",
-        "meter_power.battery_cumulative_discharge"
+        "meter_power.battery_cumulative_discharge",
+        "meter_power.active_power",
+        "measure_battery"
     ],
     "energy": {
         "batteries": [
@@ -95,6 +97,14 @@
         "meter_power.battery_cumulative_discharge": {
             "title": {
                 "en": "Battery cumulative discharge"
+            }
+        },
+        "meter_power.active_power": {
+            "title": {
+                "en": "Active usage"
+            },
+            "units": {
+                "en": "kW"
             }
         }
     },
