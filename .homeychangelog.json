@@ -139,5 +139,8 @@
   },
   "2.0.0": {
     "en": "This new release includes a new authentication method"
+  },
+  "2.0.1": {
+    "en": "Changing available values"
   }
 }
