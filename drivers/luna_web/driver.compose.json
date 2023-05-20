@@ -6,15 +6,9 @@
     "capabilities": [
         "meter_power.day",
         "meter_power.month",
-        "meter_power.installed_capacity",
+        "meter_power.capacity",
         "meter_power.total_power",
-        "meter_power.discharge_power",
-        "meter_power.sun_power",
-        "meter_power.positive_active_energy",
-        "meter_power.negative_active_energy",
-        "meter_power.import_export",
-        "measure_power",
-        "measure_battery"
+        "meter_power.sun_power"
     ],
     "energy": {
         "batteries": [
@@ -40,7 +34,7 @@
                 "en": "kWh"
             }
         },
-        "meter_power.installed_capacity": {
+        "meter_power.capacity": {
             "title": {
                 "en": "Installed capacity",
                 "nl": "Installatievermogen"
@@ -58,15 +52,6 @@
                 "en": "kWh"
             }
         },
-        "meter_power.discharge_power": {
-            "title": {
-                "en": "Charge battery power",
-                "nl": "Batterij laad capaciteit"
-            },
-            "units": {
-                "en": "kW"
-            }
-        },
         "meter_power.sun_power": {
             "title": {
                 "en": "PV yield",
@@ -74,45 +59,6 @@
             },
             "units": {
                 "en": "kW"
-            }
-        },
-        "meter_power.positive_active_energy": {
-            "title": {
-                "en": "Positive active energy",
-                "nl": "Positieve actieve energie"
-            },
-            "units": {
-                "en": "kW"
-            }
-        },
-        "meter_power.negative_active_energy": {
-            "title": {
-                "en": "Negative active energy",
-                "nl": "Negatieve actieve energie"
-            },
-            "units": {
-                "en": "kW"
-            }
-        },
-        "measure_power": {
-            "title": {
-                "en": "Load",
-                "nl": "Verbruik"
-            }
-        },
-        "meter_power.import_export": {
-            "title": {
-                "en": "Import(-)/Export(+) grid",
-                "nl": "Import(-)/Export(+) stroomnet"
-            },
-            "units": {
-                "en": "kW"
-            }
-        },
-        "measure_battery": {
-            "title": {
-                "en": "Battery SOC",
-                "nl": "Laadniveau batterij"
             }
         }
     },
