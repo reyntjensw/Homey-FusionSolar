@@ -70,12 +70,12 @@ class LunaDevice extends Device {
         if (this.hasCapability('measure_power') === false) {
             await this.addCapability('measure_power');
         }
-        if (this.hasCapability('inverter_temperature') === false) {
-            await this.addCapability('inverter_temperature');
-        }
-        if (this.hasCapability('solar_efficiency') === false) {
-            await this.addCapability('solar_efficiency');
-        }
+        // if (this.hasCapability('inverter_temperature') === false) {
+        //     await this.addCapability('inverter_temperature');
+        // }
+        // if (this.hasCapability('solar_efficiency') === false) {
+        //     await this.addCapability('solar_efficiency');
+        // }
 
         settings = this.getSettings();
         let username = settings.username;

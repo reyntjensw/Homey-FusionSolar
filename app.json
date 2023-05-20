@@ -1,806 +1,766 @@
 {
-    "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
-    "id": "com.huawei.solar",
-    "version": "1.0.57",
-    "compatibility": ">=5.0.0",
-    "brandColor": "#0362FA",
-    "sdk": 3,
-    "platforms": [
-        "local"
-    ],
-    "name": {
-        "en": "Huawei Solar"
-    },
-    "description": {
-        "en": "Smart energy for a better life",
-        "nl": "Slimme energie voor een beter leven"
-    },
-    "category": [
-        "energy"
-    ],
-    "permissions": [],
-    "images": {
-        "small": "/assets/images/small.png",
-        "large": "/assets/images/large.png",
-        "xlarge": "/assets/images/xlarge.png"
-    },
-    "author": {
-        "name": "Wouter Reyntjens",
-        "email": "wouter@chismoor.net"
-    },
-    "bugs": {
-        "url": "https://github.com/reyntjensw/Homey-FusionSolar/issues"
-    },
-    "source": "https://github.com/reyntjensw/Homey-FusionSolar/",
-    "homeyCommunityTopicId": 61745,
-    "contributing": {
-        "donate": {
-            "githubSponsors": {
-                "username": "reyntjensw"
-            }
-        }
-    },
-    "flow": {
-        "conditions": [
-            {
-                "id": "the-battery-is-full-new",
-                "title": {
-                    "en": "The battery is nearly full",
-                    "nl": "De battery is bijna opgeladen"
-                },
-                "args": [
-                    {
-                        "type": "device",
-                        "name": "device",
-                        "filter": "driver_id=luna_new"
-                    }
-                ]
-            },
-            {
-                "id": "the-sun-is-still-shining-new",
-                "title": {
-                    "en": "The sun is still shining",
-                    "nl": "De zon schijnt"
-                },
-                "args": [
-                    {
-                        "type": "device",
-                        "name": "device",
-                        "filter": "driver_id=luna_new"
-                    }
-                ]
-            },
-            {
-                "id": "the-battery-is-nearly-empty-new",
-                "title": {
-                    "en": "The battery is nearly empty",
-                    "nl": "De batterij is bijna leeg"
-                },
-                "args": [
-                    {
-                        "type": "device",
-                        "name": "device",
-                        "filter": "driver_id=luna_new"
-                    }
-                ]
-            },
-            {
-                "id": "the-battery-is-full",
-                "title": {
-                    "en": "The battery is nearly full",
-                    "nl": "De battery is bijna opgeladen"
-                },
-                "args": [
-                    {
-                        "type": "device",
-                        "name": "device",
-                        "filter": "driver_id=luna_old"
-                    }
-                ]
-            },
-            {
-                "id": "the-sun-is-still-shining",
-                "title": {
-                    "en": "The sun is still shining",
-                    "nl": "De zon schijnt"
-                },
-                "args": [
-                    {
-                        "type": "device",
-                        "name": "device",
-                        "filter": "driver_id=luna_old"
-                    }
-                ]
-            },
-            {
-                "id": "the-battery-is-nearly-empty",
-                "title": {
-                    "en": "The battery is nearly empty",
-                    "nl": "De batterij is bijna leeg"
-                },
-                "args": [
-                    {
-                        "type": "device",
-                        "name": "device",
-                        "filter": "driver_id=luna_old"
-                    }
-                ]
-            }
-        ]
-    },
-    "drivers": [
-        {
-            "name": {
-                "en": "Systems after 2023"
-            },
-            "class": "solarpanel",
-            "capabilities": [
-                "meter_power.day",
-                "meter_power.month",
-                "meter_power.installed_capacity",
-                "meter_power.total_power",
-                "meter_power.discharge_power",
-                "meter_power.sun_power",
-                "meter_power.positive_active_energy",
-                "meter_power.negative_active_energy",
-                "meter_power.import_export",
-                "measure_power",
-                "measure_battery",
-                "inverter_temperature",
-                "solar_efficiency"
-            ],
-            "energy": {
-                "batteries": [
-                    "OTHER"
-                ]
-            },
-            "capabilitiesOptions": {
-                "meter_power.day": {
-                    "title": {
-                        "en": "Daily yield",
-                        "nl": "Dagopbrengst"
-                    },
-                    "units": {
-                        "en": "kWh"
-                    }
-                },
-                "meter_power.month": {
-                    "title": {
-                        "en": "Monthly yield",
-                        "nl": "Maandopbrengst"
-                    },
-                    "units": {
-                        "en": "kWh"
-                    }
-                },
-                "meter_power.installed_capacity": {
-                    "title": {
-                        "en": "Installed capacity",
-                        "nl": "Installatievermogen"
-                    },
-                    "unit": {
-                        "en": "kWp"
-                    }
-                },
-                "meter_power.total_power": {
-                    "title": {
-                        "en": "Total power",
-                        "nl": "Totale opbrengst"
-                    },
-                    "units": {
-                        "en": "kWh"
-                    }
-                },
-                "meter_power.discharge_power": {
-                    "title": {
-                        "en": "Charge battery power",
-                        "nl": "Batterij laad capaciteit"
-                    },
-                    "units": {
-                        "en": "kW"
-                    }
-                },
-                "meter_power.sun_power": {
-                    "title": {
-                        "en": "PV yield",
-                        "nl": "Huidige PV Opbrengst"
-                    },
-                    "units": {
-                        "en": "kW"
-                    }
-                },
-                "meter_power.positive_active_energy": {
-                    "title": {
-                        "en": "Positive active energy",
-                        "nl": "Positieve actieve energie"
-                    },
-                    "units": {
-                        "en": "kW"
-                    }
-                },
-                "meter_power.negative_active_energy": {
-                    "title": {
-                        "en": "Negative active energy",
-                        "nl": "Negatieve actieve energie"
-                    },
-                    "units": {
-                        "en": "kW"
-                    }
-                },
-                "measure_power": {
-                    "title": {
-                        "en": "Load",
-                        "nl": "Verbruik"
-                    }
-                },
-                "meter_power.import_export": {
-                    "title": {
-                        "en": "Import(-)/Export(+) grid",
-                        "nl": "Import(-)/Export(+) stroomnet"
-                    },
-                    "units": {
-                        "en": "kW"
-                    }
-                },
-                "measure_battery": {
-                    "title": {
-                        "en": "Battery SOC",
-                        "nl": "Laadniveau batterij"
-                    }
-                }
-            },
-            "platforms": [
-                "local"
-            ],
-            "connectivity": [],
-            "images": {
-                "small": "/drivers/luna_new/assets/images/small.png",
-                "large": "/drivers/luna_new/assets/images/large.png"
-            },
-            "pair": [
-                {
-                    "id": "login_credentials",
-                    "template": "login_credentials"
-                },
-                {
-                    "id": "list_devices",
-                    "template": "list_devices",
-                    "navigation": {
-                        "next": "add_devices"
-                    }
-                },
-                {
-                    "id": "add_devices",
-                    "template": "add_devices"
-                }
-            ],
-            "id": "luna_new",
-            "settings": [
-                {
-                    "id": "username",
-                    "type": "text",
-                    "label": {
-                        "en": "Huawei username"
-                    }
-                },
-                {
-                    "id": "password",
-                    "type": "password",
-                    "label": {
-                        "en": "Huawei password"
-                    }
-                },
-                {
-                    "id": "battery",
-                    "type": "checkbox",
-                    "value": false,
-                    "label": {
-                        "en": "Home battery",
-                        "nl": "Thuisbatterij"
-                    }
-                },
-                {
-                    "id": "backend_server",
-                    "type": "dropdown",
-                    "value": "region01eu5",
-                    "label": {
-                        "en": "Default server",
-                        "nl": "Standaard server"
-                    },
-                    "values": [
-                        {
-                            "id": "region01eu5",
-                            "label": {
-                                "en": "region01eu5"
-                            }
-                        },
-                        {
-                            "id": "region02eu5",
-                            "label": {
-                                "en": "region02eu5"
-                            }
-                        },
-                        {
-                            "id": "region03eu5",
-                            "label": {
-                                "en": "region03eu5"
-                            }
-                        },
-                        {
-                            "id": "region04eu5",
-                            "label": {
-                                "en": "region04eu5"
-                            }
-                        },
-                        {
-                            "id": "region05eu5",
-                            "label": {
-                                "en": "region05eu5"
-                            }
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "name": {
-                "en": "Systems before 2023"
-            },
-            "class": "solarpanel",
-            "capabilities": [
-                "meter_power.day",
-                "meter_power.month",
-                "meter_power.installed_capacity",
-                "meter_power.total_power",
-                "meter_power.discharge_power",
-                "meter_power.sun_power",
-                "meter_power.positive_active_energy",
-                "meter_power.negative_active_energy",
-                "meter_power.import_export",
-                "measure_power",
-                "measure_battery",
-                "inverter_temperature",
-                "solar_efficiency"
-            ],
-            "energy": {
-                "batteries": [
-                    "OTHER"
-                ]
-            },
-            "capabilitiesOptions": {
-                "meter_power.day": {
-                    "title": {
-                        "en": "Daily yield",
-                        "nl": "Dagopbrengst"
-                    },
-                    "units": {
-                        "en": "kWh"
-                    }
-                },
-                "meter_power.month": {
-                    "title": {
-                        "en": "Monthly yield",
-                        "nl": "Maandopbrengst"
-                    },
-                    "units": {
-                        "en": "kWh"
-                    }
-                },
-                "meter_power.installed_capacity": {
-                    "title": {
-                        "en": "Installed capacity",
-                        "nl": "Installatievermogen"
-                    },
-                    "unit": {
-                        "en": "kWp"
-                    }
-                },
-                "meter_power.total_power": {
-                    "title": {
-                        "en": "Total power",
-                        "nl": "Totale opbrengst"
-                    },
-                    "units": {
-                        "en": "kWh"
-                    }
-                },
-                "meter_power.discharge_power": {
-                    "title": {
-                        "en": "Charge battery power",
-                        "nl": "Batterij laad capaciteit"
-                    },
-                    "units": {
-                        "en": "kW"
-                    }
-                },
-                "meter_power.sun_power": {
-                    "title": {
-                        "en": "PV yield",
-                        "nl": "Huidige PV Opbrengst"
-                    },
-                    "units": {
-                        "en": "kW"
-                    }
-                },
-                "meter_power.positive_active_energy": {
-                    "title": {
-                        "en": "Positive active energy",
-                        "nl": "Positieve actieve energie"
-                    },
-                    "units": {
-                        "en": "kW"
-                    }
-                },
-                "meter_power.negative_active_energy": {
-                    "title": {
-                        "en": "Negative active energy",
-                        "nl": "Negatieve actieve energie"
-                    },
-                    "units": {
-                        "en": "kW"
-                    }
-                },
-                "measure_power": {
-                    "title": {
-                        "en": "Load",
-                        "nl": "Verbruik"
-                    }
-                },
-                "meter_power.import_export": {
-                    "title": {
-                        "en": "Import(-)/Export(+) grid",
-                        "nl": "Import(-)/Export(+) stroomnet"
-                    },
-                    "units": {
-                        "en": "kW"
-                    }
-                },
-                "measure_battery": {
-                    "title": {
-                        "en": "Battery SOC",
-                        "nl": "Laadniveau batterij"
-                    }
-                }
-            },
-            "platforms": [
-                "local"
-            ],
-            "connectivity": [],
-            "images": {
-                "small": "/drivers/luna_old/assets/images/small.png",
-                "large": "/drivers/luna_old/assets/images/large.png"
-            },
-            "pair": [
-                {
-                    "id": "login_credentials",
-                    "template": "login_credentials"
-                },
-                {
-                    "id": "list_devices",
-                    "template": "list_devices",
-                    "navigation": {
-                        "next": "add_devices"
-                    }
-                },
-                {
-                    "id": "add_devices",
-                    "template": "add_devices"
-                }
-            ],
-            "id": "luna_old",
-            "settings": [
-                {
-                    "id": "username",
-                    "type": "text",
-                    "label": {
-                        "en": "Huawei username"
-                    }
-                },
-                {
-                    "id": "password",
-                    "type": "password",
-                    "label": {
-                        "en": "Huawei password"
-                    }
-                },
-                {
-                    "id": "battery",
-                    "type": "checkbox",
-                    "value": false,
-                    "label": {
-                        "en": "Home battery",
-                        "nl": "Thuisbatterij"
-                    }
-                },
-                {
-                    "id": "backend_server",
-                    "type": "dropdown",
-                    "value": "region01eu5",
-                    "label": {
-                        "en": "Default server",
-                        "nl": "Standaard server"
-                    },
-                    "values": [
-                        {
-                            "id": "region01eu5",
-                            "label": {
-                                "en": "region01eu5"
-                            }
-                        },
-                        {
-                            "id": "region02eu5",
-                            "label": {
-                                "en": "region02eu5"
-                            }
-                        },
-                        {
-                            "id": "region03eu5",
-                            "label": {
-                                "en": "region03eu5"
-                            }
-                        },
-                        {
-                            "id": "region04eu5",
-                            "label": {
-                                "en": "region04eu5"
-                            }
-                        },
-                        {
-                            "id": "region05eu5",
-                            "label": {
-                                "en": "region05eu5"
-                            }
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "name": {
-                "en": "Web"
-            },
-            "class": "solarpanel",
-            "capabilities": [
-                "meter_power.day",
-                "meter_power.month",
-                "meter_power.installed_capacity",
-                "meter_power.total_power",
-                "meter_power.discharge_power",
-                "meter_power.sun_power",
-                "meter_power.positive_active_energy",
-                "meter_power.negative_active_energy",
-                "meter_power.import_export",
-                "measure_power",
-                "measure_battery",
-                "inverter_temperature",
-                "solar_efficiency"
-            ],
-            "energy": {
-                "batteries": [
-                    "OTHER"
-                ]
-            },
-            "capabilitiesOptions": {
-                "meter_power.day": {
-                    "title": {
-                        "en": "Daily yield",
-                        "nl": "Dagopbrengst"
-                    },
-                    "units": {
-                        "en": "kWh"
-                    }
-                },
-                "meter_power.month": {
-                    "title": {
-                        "en": "Monthly yield",
-                        "nl": "Maandopbrengst"
-                    },
-                    "units": {
-                        "en": "kWh"
-                    }
-                },
-                "meter_power.installed_capacity": {
-                    "title": {
-                        "en": "Installed capacity",
-                        "nl": "Installatievermogen"
-                    },
-                    "unit": {
-                        "en": "kWp"
-                    }
-                },
-                "meter_power.total_power": {
-                    "title": {
-                        "en": "Total power",
-                        "nl": "Totale opbrengst"
-                    },
-                    "units": {
-                        "en": "kWh"
-                    }
-                },
-                "meter_power.discharge_power": {
-                    "title": {
-                        "en": "Charge battery power",
-                        "nl": "Batterij laad capaciteit"
-                    },
-                    "units": {
-                        "en": "kW"
-                    }
-                },
-                "meter_power.sun_power": {
-                    "title": {
-                        "en": "PV yield",
-                        "nl": "Huidige PV Opbrengst"
-                    },
-                    "units": {
-                        "en": "kW"
-                    }
-                },
-                "meter_power.positive_active_energy": {
-                    "title": {
-                        "en": "Positive active energy",
-                        "nl": "Positieve actieve energie"
-                    },
-                    "units": {
-                        "en": "kW"
-                    }
-                },
-                "meter_power.negative_active_energy": {
-                    "title": {
-                        "en": "Negative active energy",
-                        "nl": "Negatieve actieve energie"
-                    },
-                    "units": {
-                        "en": "kW"
-                    }
-                },
-                "measure_power": {
-                    "title": {
-                        "en": "Load",
-                        "nl": "Verbruik"
-                    }
-                },
-                "meter_power.import_export": {
-                    "title": {
-                        "en": "Import(-)/Export(+) grid",
-                        "nl": "Import(-)/Export(+) stroomnet"
-                    },
-                    "units": {
-                        "en": "kW"
-                    }
-                },
-                "measure_battery": {
-                    "title": {
-                        "en": "Battery SOC",
-                        "nl": "Laadniveau batterij"
-                    }
-                }
-            },
-            "platforms": [
-                "local"
-            ],
-            "connectivity": [],
-            "images": {
-                "small": "/drivers/luna_web/assets/images/small.png",
-                "large": "/drivers/luna_web/assets/images/large.png"
-            },
-            "pair": [
-                {
-                    "id": "login_credentials",
-                    "template": "login_credentials"
-                },
-                {
-                    "id": "list_devices",
-                    "template": "list_devices",
-                    "navigation": {
-                        "next": "add_devices"
-                    }
-                },
-                {
-                    "id": "add_devices",
-                    "template": "add_devices"
-                }
-            ],
-            "id": "luna_web",
-            "settings": [
-                {
-                    "id": "username",
-                    "type": "text",
-                    "label": {
-                        "en": "Huawei username"
-                    }
-                },
-                {
-                    "id": "password",
-                    "type": "password",
-                    "label": {
-                        "en": "Huawei password"
-                    }
-                },
-                {
-                    "id": "battery",
-                    "type": "checkbox",
-                    "value": false,
-                    "label": {
-                        "en": "Home battery",
-                        "nl": "Thuisbatterij"
-                    }
-                },
-                {
-                    "id": "backend_server",
-                    "type": "dropdown",
-                    "value": "region01eu5",
-                    "label": {
-                        "en": "Default server",
-                        "nl": "Standaard server"
-                    },
-                    "values": [
-                        {
-                            "id": "region01eu5",
-                            "label": {
-                                "en": "region01eu5"
-                            }
-                        },
-                        {
-                            "id": "region02eu5",
-                            "label": {
-                                "en": "region02eu5"
-                            }
-                        },
-                        {
-                            "id": "region03eu5",
-                            "label": {
-                                "en": "region03eu5"
-                            }
-                        },
-                        {
-                            "id": "region04eu5",
-                            "label": {
-                                "en": "region04eu5"
-                            }
-                        },
-                        {
-                            "id": "region05eu5",
-                            "label": {
-                                "en": "region05eu5"
-                            }
-                        }
-                    ]
-                }
-            ]
-        }
-    ],
-    "capabilities": {
-        "inverter_temperature": {
-            "type": "number",
-            "title": {
-                "en": "Inverter temp"
-            },
-            "uiComponent": "sensor",
-            "getable": true,
-            "setable": false,
-            "units": {
-                "en": "°C"
-            },
-            "min": -50,
-            "max": 100,
-            "step": 0.1,
-            "icon": "/assets/inverter.svg"
-        },
-        "solar_efficiency": {
-            "type": "number",
-            "title": {
-                "en": "Panels efficiency"
-            },
-            "uiComponent": "sensor",
-            "getable": true,
-            "setable": false,
-            "units": {
-                "en": "%"
-            },
-            "min": 0,
-            "max": 100,
-            "step": 0.1,
-            "icon": "/assets/efficiency.svg"
-        }
+  "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
+  "id": "com.huawei.solar",
+  "version": "1.0.56",
+  "compatibility": ">=5.0.0",
+  "brandColor": "#0362FA",
+  "sdk": 3,
+  "platforms": [
+    "local"
+  ],
+  "name": {
+    "en": "Huawei Solar"
+  },
+  "description": {
+    "en": "Smart energy for a better life",
+    "nl": "Slimme energie voor een beter leven"
+  },
+  "category": [
+    "energy"
+  ],
+  "permissions": [],
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
+  "author": {
+    "name": "Wouter Reyntjens",
+    "email": "wouter@chismoor.net"
+  },
+  "bugs": {
+    "url": "https://github.com/reyntjensw/Homey-FusionSolar/issues"
+  },
+  "source": "https://github.com/reyntjensw/Homey-FusionSolar/",
+  "homeyCommunityTopicId": 61745,
+  "contributing": {
+    "donate": {
+      "githubSponsors": {
+        "username": "reyntjensw"
+      }
     }
+  },
+  "flow": {
+    "conditions": [
+      {
+        "id": "the-battery-is-full-new",
+        "title": {
+          "en": "The battery is nearly full",
+          "nl": "De battery is bijna opgeladen"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=luna_new"
+          }
+        ]
+      },
+      {
+        "id": "the-sun-is-still-shining-new",
+        "title": {
+          "en": "The sun is still shining",
+          "nl": "De zon schijnt"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=luna_new"
+          }
+        ]
+      },
+      {
+        "id": "the-battery-is-nearly-empty-new",
+        "title": {
+          "en": "The battery is nearly empty",
+          "nl": "De batterij is bijna leeg"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=luna_new"
+          }
+        ]
+      },
+      {
+        "id": "the-battery-is-full",
+        "title": {
+          "en": "The battery is nearly full",
+          "nl": "De battery is bijna opgeladen"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=luna_old"
+          }
+        ]
+      },
+      {
+        "id": "the-sun-is-still-shining",
+        "title": {
+          "en": "The sun is still shining",
+          "nl": "De zon schijnt"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=luna_old"
+          }
+        ]
+      },
+      {
+        "id": "the-battery-is-nearly-empty",
+        "title": {
+          "en": "The battery is nearly empty",
+          "nl": "De batterij is bijna leeg"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=luna_old"
+          }
+        ]
+      }
+    ]
+  },
+  "drivers": [
+    {
+      "name": {
+        "en": "Systems after 2023"
+      },
+      "class": "solarpanel",
+      "capabilities": [
+        "meter_power.day",
+        "meter_power.month",
+        "meter_power.installed_capacity",
+        "meter_power.total_power",
+        "meter_power.discharge_power",
+        "meter_power.sun_power",
+        "meter_power.positive_active_energy",
+        "meter_power.negative_active_energy",
+        "meter_power.import_export",
+        "measure_power",
+        "measure_battery"
+      ],
+      "energy": {
+        "batteries": [
+          "OTHER"
+        ]
+      },
+      "capabilitiesOptions": {
+        "meter_power.day": {
+          "title": {
+            "en": "Daily yield",
+            "nl": "Dagopbrengst"
+          },
+          "units": {
+            "en": "kWh"
+          }
+        },
+        "meter_power.month": {
+          "title": {
+            "en": "Monthly yield",
+            "nl": "Maandopbrengst"
+          },
+          "units": {
+            "en": "kWh"
+          }
+        },
+        "meter_power.installed_capacity": {
+          "title": {
+            "en": "Installed capacity",
+            "nl": "Installatievermogen"
+          },
+          "unit": {
+            "en": "kWp"
+          }
+        },
+        "meter_power.total_power": {
+          "title": {
+            "en": "Total power",
+            "nl": "Totale opbrengst"
+          },
+          "units": {
+            "en": "kWh"
+          }
+        },
+        "meter_power.discharge_power": {
+          "title": {
+            "en": "Charge battery power",
+            "nl": "Batterij laad capaciteit"
+          },
+          "units": {
+            "en": "kW"
+          }
+        },
+        "meter_power.sun_power": {
+          "title": {
+            "en": "PV yield",
+            "nl": "Huidige PV Opbrengst"
+          },
+          "units": {
+            "en": "kW"
+          }
+        },
+        "meter_power.positive_active_energy": {
+          "title": {
+            "en": "Positive active energy",
+            "nl": "Positieve actieve energie"
+          },
+          "units": {
+            "en": "kW"
+          }
+        },
+        "meter_power.negative_active_energy": {
+          "title": {
+            "en": "Negative active energy",
+            "nl": "Negatieve actieve energie"
+          },
+          "units": {
+            "en": "kW"
+          }
+        },
+        "measure_power": {
+          "title": {
+            "en": "Load",
+            "nl": "Verbruik"
+          }
+        },
+        "meter_power.import_export": {
+          "title": {
+            "en": "Import(-)/Export(+) grid",
+            "nl": "Import(-)/Export(+) stroomnet"
+          },
+          "units": {
+            "en": "kW"
+          }
+        },
+        "measure_battery": {
+          "title": {
+            "en": "Battery SOC",
+            "nl": "Laadniveau batterij"
+          }
+        }
+      },
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [],
+      "images": {
+        "small": "/drivers/luna_new/assets/images/small.png",
+        "large": "/drivers/luna_new/assets/images/large.png"
+      },
+      "pair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials"
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "luna_new",
+      "settings": [
+        {
+          "id": "username",
+          "type": "text",
+          "label": {
+            "en": "Huawei username"
+          }
+        },
+        {
+          "id": "password",
+          "type": "password",
+          "label": {
+            "en": "Huawei password"
+          }
+        },
+        {
+          "id": "battery",
+          "type": "checkbox",
+          "value": false,
+          "label": {
+            "en": "Home battery",
+            "nl": "Thuisbatterij"
+          }
+        },
+        {
+          "id": "backend_server",
+          "type": "dropdown",
+          "value": "region01eu5",
+          "label": {
+            "en": "Default server",
+            "nl": "Standaard server"
+          },
+          "values": [
+            {
+              "id": "region01eu5",
+              "label": {
+                "en": "region01eu5"
+              }
+            },
+            {
+              "id": "region02eu5",
+              "label": {
+                "en": "region02eu5"
+              }
+            },
+            {
+              "id": "region03eu5",
+              "label": {
+                "en": "region03eu5"
+              }
+            },
+            {
+              "id": "region04eu5",
+              "label": {
+                "en": "region04eu5"
+              }
+            },
+            {
+              "id": "region05eu5",
+              "label": {
+                "en": "region05eu5"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "Systems before 2023"
+      },
+      "class": "solarpanel",
+      "capabilities": [
+        "meter_power.day",
+        "meter_power.month",
+        "meter_power.installed_capacity",
+        "meter_power.total_power",
+        "meter_power.discharge_power",
+        "meter_power.sun_power",
+        "meter_power.positive_active_energy",
+        "meter_power.negative_active_energy",
+        "meter_power.import_export",
+        "measure_power",
+        "measure_battery"
+      ],
+      "energy": {
+        "batteries": [
+          "OTHER"
+        ]
+      },
+      "capabilitiesOptions": {
+        "meter_power.day": {
+          "title": {
+            "en": "Daily yield",
+            "nl": "Dagopbrengst"
+          },
+          "units": {
+            "en": "kWh"
+          }
+        },
+        "meter_power.month": {
+          "title": {
+            "en": "Monthly yield",
+            "nl": "Maandopbrengst"
+          },
+          "units": {
+            "en": "kWh"
+          }
+        },
+        "meter_power.installed_capacity": {
+          "title": {
+            "en": "Installed capacity",
+            "nl": "Installatievermogen"
+          },
+          "unit": {
+            "en": "kWp"
+          }
+        },
+        "meter_power.total_power": {
+          "title": {
+            "en": "Total power",
+            "nl": "Totale opbrengst"
+          },
+          "units": {
+            "en": "kWh"
+          }
+        },
+        "meter_power.discharge_power": {
+          "title": {
+            "en": "Charge battery power",
+            "nl": "Batterij laad capaciteit"
+          },
+          "units": {
+            "en": "kW"
+          }
+        },
+        "meter_power.sun_power": {
+          "title": {
+            "en": "PV yield",
+            "nl": "Huidige PV Opbrengst"
+          },
+          "units": {
+            "en": "kW"
+          }
+        },
+        "meter_power.positive_active_energy": {
+          "title": {
+            "en": "Positive active energy",
+            "nl": "Positieve actieve energie"
+          },
+          "units": {
+            "en": "kW"
+          }
+        },
+        "meter_power.negative_active_energy": {
+          "title": {
+            "en": "Negative active energy",
+            "nl": "Negatieve actieve energie"
+          },
+          "units": {
+            "en": "kW"
+          }
+        },
+        "measure_power": {
+          "title": {
+            "en": "Load",
+            "nl": "Verbruik"
+          }
+        },
+        "meter_power.import_export": {
+          "title": {
+            "en": "Import(-)/Export(+) grid",
+            "nl": "Import(-)/Export(+) stroomnet"
+          },
+          "units": {
+            "en": "kW"
+          }
+        },
+        "measure_battery": {
+          "title": {
+            "en": "Battery SOC",
+            "nl": "Laadniveau batterij"
+          }
+        }
+      },
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [],
+      "images": {
+        "small": "/drivers/luna_old/assets/images/small.png",
+        "large": "/drivers/luna_old/assets/images/large.png"
+      },
+      "pair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials"
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "luna_old",
+      "settings": [
+        {
+          "id": "username",
+          "type": "text",
+          "label": {
+            "en": "Huawei username"
+          }
+        },
+        {
+          "id": "password",
+          "type": "password",
+          "label": {
+            "en": "Huawei password"
+          }
+        },
+        {
+          "id": "battery",
+          "type": "checkbox",
+          "value": false,
+          "label": {
+            "en": "Home battery",
+            "nl": "Thuisbatterij"
+          }
+        },
+        {
+          "id": "backend_server",
+          "type": "dropdown",
+          "value": "region01eu5",
+          "label": {
+            "en": "Default server",
+            "nl": "Standaard server"
+          },
+          "values": [
+            {
+              "id": "region01eu5",
+              "label": {
+                "en": "region01eu5"
+              }
+            },
+            {
+              "id": "region02eu5",
+              "label": {
+                "en": "region02eu5"
+              }
+            },
+            {
+              "id": "region03eu5",
+              "label": {
+                "en": "region03eu5"
+              }
+            },
+            {
+              "id": "region04eu5",
+              "label": {
+                "en": "region04eu5"
+              }
+            },
+            {
+              "id": "region05eu5",
+              "label": {
+                "en": "region05eu5"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "Web"
+      },
+      "class": "solarpanel",
+      "capabilities": [
+        "meter_power.day",
+        "meter_power.month",
+        "meter_power.installed_capacity",
+        "meter_power.total_power",
+        "meter_power.discharge_power",
+        "meter_power.sun_power",
+        "meter_power.positive_active_energy",
+        "meter_power.negative_active_energy",
+        "meter_power.import_export",
+        "measure_power",
+        "measure_battery"
+      ],
+      "energy": {
+        "batteries": [
+          "OTHER"
+        ]
+      },
+      "capabilitiesOptions": {
+        "meter_power.day": {
+          "title": {
+            "en": "Daily yield",
+            "nl": "Dagopbrengst"
+          },
+          "units": {
+            "en": "kWh"
+          }
+        },
+        "meter_power.month": {
+          "title": {
+            "en": "Monthly yield",
+            "nl": "Maandopbrengst"
+          },
+          "units": {
+            "en": "kWh"
+          }
+        },
+        "meter_power.installed_capacity": {
+          "title": {
+            "en": "Installed capacity",
+            "nl": "Installatievermogen"
+          },
+          "unit": {
+            "en": "kWp"
+          }
+        },
+        "meter_power.total_power": {
+          "title": {
+            "en": "Total power",
+            "nl": "Totale opbrengst"
+          },
+          "units": {
+            "en": "kWh"
+          }
+        },
+        "meter_power.discharge_power": {
+          "title": {
+            "en": "Charge battery power",
+            "nl": "Batterij laad capaciteit"
+          },
+          "units": {
+            "en": "kW"
+          }
+        },
+        "meter_power.sun_power": {
+          "title": {
+            "en": "PV yield",
+            "nl": "Huidige PV Opbrengst"
+          },
+          "units": {
+            "en": "kW"
+          }
+        },
+        "meter_power.positive_active_energy": {
+          "title": {
+            "en": "Positive active energy",
+            "nl": "Positieve actieve energie"
+          },
+          "units": {
+            "en": "kW"
+          }
+        },
+        "meter_power.negative_active_energy": {
+          "title": {
+            "en": "Negative active energy",
+            "nl": "Negatieve actieve energie"
+          },
+          "units": {
+            "en": "kW"
+          }
+        },
+        "measure_power": {
+          "title": {
+            "en": "Load",
+            "nl": "Verbruik"
+          }
+        },
+        "meter_power.import_export": {
+          "title": {
+            "en": "Import(-)/Export(+) grid",
+            "nl": "Import(-)/Export(+) stroomnet"
+          },
+          "units": {
+            "en": "kW"
+          }
+        },
+        "measure_battery": {
+          "title": {
+            "en": "Battery SOC",
+            "nl": "Laadniveau batterij"
+          }
+        }
+      },
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [],
+      "images": {
+        "small": "/drivers/luna_web/assets/images/small.png",
+        "large": "/drivers/luna_web/assets/images/large.png"
+      },
+      "pair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials"
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "luna_web",
+      "settings": [
+        {
+          "id": "username",
+          "type": "text",
+          "label": {
+            "en": "Huawei username"
+          }
+        },
+        {
+          "id": "password",
+          "type": "password",
+          "label": {
+            "en": "Huawei password"
+          }
+        },
+        {
+          "id": "battery",
+          "type": "checkbox",
+          "value": false,
+          "label": {
+            "en": "Home battery",
+            "nl": "Thuisbatterij"
+          }
+        },
+        {
+          "id": "backend_server",
+          "type": "dropdown",
+          "value": "region01eu5",
+          "label": {
+            "en": "Default server",
+            "nl": "Standaard server"
+          },
+          "values": [
+            {
+              "id": "region01eu5",
+              "label": {
+                "en": "region01eu5"
+              }
+            },
+            {
+              "id": "region02eu5",
+              "label": {
+                "en": "region02eu5"
+              }
+            },
+            {
+              "id": "region03eu5",
+              "label": {
+                "en": "region03eu5"
+              }
+            },
+            {
+              "id": "region04eu5",
+              "label": {
+                "en": "region04eu5"
+              }
+            },
+            {
+              "id": "region05eu5",
+              "label": {
+                "en": "region05eu5"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
