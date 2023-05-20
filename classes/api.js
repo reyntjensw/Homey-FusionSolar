@@ -171,11 +171,12 @@ class LunaApi {
         return { inverter, powerSensor, battery };
 
     }
-    async getDevRealKpi(devIds, devTypeId) {
+    async getDevRealKpi(devIds, devTypeId, server) {
         console.log("token", token);
 
         // console.log(devIds, devTypeId, server)
-        const systemsUrl = `https://intl.fusionsolar.huawei.com/thirdData/getDevRealKpi`;
+        const systemsUrl = `https://${server}.fusionsolar.huawei.com:31942/thirdData/getDevRealKpi`;
+
         let bodyData = JSON.stringify({
             "devIds": devIds,
             "devTypeId": devTypeId
