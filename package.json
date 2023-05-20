@@ -14,7 +14,13 @@
     },
     "dependencies": {
         "axios": "^1.4.0",
+        "axios-cookiejar-support": "^4.0.6",
+        "fetch-cookie": "^2.1.0",
         "fetch-session": "^1.1.8",
-        "node-fetch": "^2.6.1"
+        "got": "^12.6.0",
+        "http.min": "^2.1.0",
+        "node-fetch": "^2.6.11",
+        "superagent": "^8.0.9",
+        "xmlhttprequest": "^1.8.0"
     }
 }

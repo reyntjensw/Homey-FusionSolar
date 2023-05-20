@@ -87,15 +87,16 @@ class Huawei extends Device {
                 console.log("false");
                 new_system = false;
             }
-            //     Let server = settings.backend_server;
-            let server = "intl";
+            let server = settings.backend_server;
             console.log('server: ', server);
 
             const lunaApi = new LunaApi(username, password);
 
             await lunaApi.initializeSession();
             this.log("get basic Data");
-            basicStatsObj = await lunaApi.getBasicStats(this.getData().id);
+            if (Object.entries(basicStatsObj).length !== 0) {
+                basicStatsObj = await lunaApi.getBasicStats(this.getData().id);
+            }
 
             if (basicStatsObj !== null) {
                 if (basicStatsObj.day_power) {

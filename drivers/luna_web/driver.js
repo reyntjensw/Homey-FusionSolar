@@ -1,5 +1,5 @@
 const HuaweiDriver = require('../../classes/driver.js');
-const { LunaApi } = require('../../classes/api.js');
+const { LunaApi } = require('./api.js');
 
 class LunaDriver extends HuaweiDriver {
 
@@ -12,7 +12,8 @@ class LunaDriver extends HuaweiDriver {
             try {
                 this.homey.settings.set('username', data.username);
                 this.homey.settings.set('password', data.password);
-                this.homey.settings.set('new', false);
+                this.homey.settings.set('server', "region01eu5");
+                this.homey.settings.set('new', true);
 
 
                 console.log("Username :");
@@ -20,7 +21,7 @@ class LunaDriver extends HuaweiDriver {
                 username = data.username;
                 password = data.password;
 
-                lunaApi = new LunaApi(username, password);
+                lunaApi = new LunaApi(username, password, "region01eu5");
                 const session = await lunaApi.initializeSession();
 
                 return session;
@@ -31,21 +32,19 @@ class LunaDriver extends HuaweiDriver {
 
         session.setHandler('list_devices', async (data) => {
             try {
-                lunaApi = new LunaApi(username, password);
-                const systemsOld = await lunaApi.getSystemsOld();
-                const systems = Object;
-                console.log("systems :");
-                console.log(systemsOld);
+                lunaApi = new LunaApi(username, password, "region01eu5");
+                const systems = await lunaApi.getSystems();
+                console.log(systems)
 
-                if (systemsOld !== null && Object.entries(systemsOld).length !== 0) {
-                    console.log("Hit old")
-                    if (Object.entries(systemsOld).length !== 0) {
 
-                        const devices = systemsOld.map(item => ({
-                            name: item.stationName,
+                if (systems !== null && Object.entries(systems).length !== 0) {
+                    console.log("Hit")
+                    if (Object.entries(systems).length !== 0) {
+
+                        const devices = systems.map(item => ({
+                            name: item,
                             data: {
-                                id: item.stationCode,
-                                capacity: item.capacity * 1000,
+                                id: item
                             },
                             settings: { username, password }
 
