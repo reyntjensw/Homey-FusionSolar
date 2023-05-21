@@ -151,5 +151,8 @@
   },
   "2.0.4": {
     "en": "Adding region selection on init"
+  },
+  "2.0.5": {
+    "en": "Fixing backend server variable"
   }
 }
