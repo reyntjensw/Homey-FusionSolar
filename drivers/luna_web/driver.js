@@ -6,13 +6,25 @@ class LunaDriver extends HuaweiDriver {
     onPair(session) {
         let username;
         let password;
+        let backend_server;
         let lunaApi;
 
+        session.setHandler('region', async (data) => {
+            this.config = {
+                backend_server: data.region
+            };
+            this.homey.settings.set('backend_server', data.region);
+            console.log(data)
+
+            this.homey.app.log(`[Driver] ${this.id} - got config`, { ...this.config });
+
+            return true;
+        });
         session.setHandler('login', async (data) => {
             try {
                 this.homey.settings.set('username', data.username);
                 this.homey.settings.set('password', data.password);
-                this.homey.settings.set('server', "region01eu5");
+                backend_server = this.homey.settings.get('backend_server');
                 this.homey.settings.set('new', true);
 
 
@@ -21,7 +33,7 @@ class LunaDriver extends HuaweiDriver {
                 username = data.username;
                 password = data.password;
 
-                lunaApi = new LunaApi(username, password, "region01eu5");
+                lunaApi = new LunaApi(username, password, backend_server);
                 const session = await lunaApi.initializeSession();
 
                 return session;
@@ -32,7 +44,7 @@ class LunaDriver extends HuaweiDriver {
 
         session.setHandler('list_devices', async (data) => {
             try {
-                lunaApi = new LunaApi(username, password, "region01eu5");
+                lunaApi = new LunaApi(username, password, backend_server);
                 const systems = await lunaApi.getSystems();
                 console.log(systems)
 
@@ -46,7 +58,7 @@ class LunaDriver extends HuaweiDriver {
                             data: {
                                 id: item
                             },
-                            settings: { username, password }
+                            settings: { username, password, backend_server }
 
                         }));
 

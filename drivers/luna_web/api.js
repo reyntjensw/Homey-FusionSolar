@@ -20,7 +20,6 @@ const date_ob = new Date();
 
 // const httpAgent = new http.Agent({ keepAlive: true });
 
-const url = "region01eu5";
 const map = new Map();
 class LunaApi {
     constructor(username, password, server) {
@@ -31,14 +30,14 @@ class LunaApi {
 
     async initializeSession() {
 
-        var cookies_reg = await jar.getCookies("https://region01eu5.fusionsolar.huawei.com/");
+        var cookies_reg = await jar.getCookies("https://" + this.server + ".fusionsolar.huawei.com/");
         console.log(cookies_reg)
-        const login_url = "https://" + url.slice(-3) + ".fusionsolar.huawei.com/unisso/v2/validateUser.action?"
+        const login_url = "https://" + this.server.slice(-3) + ".fusionsolar.huawei.com/unisso/v2/validateUser.action?"
 
         const params = new URLSearchParams({})
 
         params.append("decision", 1)
-        params.append("service", 'https://region01eu5.fusionsolar.huawei.com/unisess/v1/auth?service=/netecowebext/home/index.html#/LOGIN')
+        params.append("service", 'https://' + this.server + '.fusionsolar.huawei.com/unisess/v1/auth?service=/netecowebext/home/index.html#/LOGIN')
 
         const sendRequest = async () => {
 
@@ -109,7 +108,7 @@ class LunaApi {
         const params = new URLSearchParams({})
         params.append("_", Math.round(Date.now()))
 
-
+        console.log(this.server)
         const sendRequest = async () => {
 
             try {
@@ -148,7 +147,7 @@ class LunaApi {
                 const res = await client
                     .get("https://" + this.server + ".fusionsolar.huawei.com/rest/pvms/web/station/v1/station/total-real-kpi?" + params.toString(), { withCredentials: true }
                     );
-                // console.log(res.data.data);
+                console.log(res);
                 return res
 
             } catch (error) {
@@ -166,7 +165,7 @@ class LunaApi {
 
     async getStationList() {
         let date_ob = new Date();
-        var cookies_reg = await jar.getCookies("https://region01eu5.fusionsolar.huawei.com/");
+        var cookies_reg = await jar.getCookies("https://" + this.server + ".fusionsolar.huawei.com/");
         // console.log(cookies_reg)
         const roarand = String(cookies_reg.find(element => element.key === 'roarand'))
         // console.log(roarand)
@@ -196,7 +195,7 @@ class LunaApi {
 
             try {
                 const res = await client
-                    .post("https://region01eu5.fusionsolar.huawei.com/rest/pvms/web/station/v1/station/station-list", data, config, { withCredentials: true }
+                    .post("https://" + this.server + ".fusionsolar.huawei.com/rest/pvms/web/station/v1/station/station-list", data, config, { withCredentials: true }
                     );
 
                 // console.log(res);
@@ -229,7 +228,7 @@ class LunaApi {
             try {
                 const res = await client
                     .get("https://" + this.server + ".fusionsolar.huawei.com/rest/neteco/web/config/device/v1/device-list?" + params.toString());
-                console.log(res.data);
+                //  console.log(res);
                 return res
 
             } catch (error) {
@@ -261,7 +260,7 @@ class LunaApi {
             try {
                 const res = await client
                     .get("https://" + this.server + ".fusionsolar.huawei.com/rest/pvms/web/station/v1/overview/energy-flow?" + params.toString());
-                // console.log(res);
+                console.log(res);
                 return res
 
             } catch (error) {

@@ -15,7 +15,8 @@
         "meter_power.battery_charge",
         "meter_power.battery_cumulative_discharge",
         "meter_power.active_power",
-        "measure_battery"
+        "measure_battery",
+        "measure_power"
     ],
     "energy": {
         "batteries": [
@@ -117,6 +118,9 @@
         "large": "{{driverAssetsPath}}/images/large.png"
     },
     "pair": [
+        {
+            "id": "region"
+        },
         {
             "id": "login_credentials",
             "template": "login_credentials"
