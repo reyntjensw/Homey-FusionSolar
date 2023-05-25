@@ -157,5 +157,8 @@
   },
   "2.0.6": {
     "en": "Fixing old code"
+  },
+  "2.0.7": {
+    "en": "Fixing energy tab value"
   }
 }
