@@ -101,12 +101,15 @@ class LunaDevice extends Device {
             // console.log(powerInfo.flow["nodes"])
 
             powerStatsObj = await lunaApi.getPowerStatus();
+            // console.log("powerStatsObj")
+            // console.log(powerStatsObj)
 
             detailStatsObj = await lunaApi.getStationList();
+            // console.log("detailStatsObj");
             // console.log(detailStatsObj);
 
 
-            if (detailStatsObj.realNrgKpi.dailyNrg) {
+            if (detailStatsObj.realNrgKpi.dailyNrg.pvNrg) {
                 await this.setCapabilityValue('meter_power.day', Number(detailStatsObj.realNrgKpi.dailyNrg.pvNrg)).catch(this.error);
                 this.setStoreValue("yield_day", Number(detailStatsObj.realNrgKpi.dailyNrg.pvNrg));
             }
@@ -125,9 +128,9 @@ class LunaDevice extends Device {
                 await this.setCapabilityValue('meter_power.fed_to_grid', Number(detailStatsObj.rptNrgKpi.dailyNrg.onGridNrg)).catch(this.error);
                 this.setStoreValue("fed_to_grid", Number(detailStatsObj.rptNrgKpi.dailyNrg.onGridNrg));
             }
-            if (detailStatsObj.realNrgKpi.dailyNrg.buyNrg) {
-                await this.setCapabilityValue('meter_power.import_from_grid', Number(detailStatsObj.realNrgKpi.dailyNrg.buyNrg)).catch(this.error);
-                this.setStoreValue("import_from_grid", Number(detailStatsObj.realNrgKpi.dailyNrg.buyNrg));
+            if (detailStatsObj.rptNrgKpi.dailyNrg.buyNrg) {
+                await this.setCapabilityValue('meter_power.import_from_grid', Number(detailStatsObj.rptNrgKpi.dailyNrg.buyNrg)).catch(this.error);
+                this.setStoreValue("import_from_grid", Number(detailStatsObj.rptNrgKpi.dailyNrg.buyNrg));
             }
             if (powerInfo.flow["nodes"][1]["deviceTips"]["ACTIVE_POWER"]) {
                 await this.setCapabilityValue('meter_power.active_power', Number(powerInfo.flow["nodes"][1]["deviceTips"]["ACTIVE_POWER"])).catch(this.error);
@@ -143,9 +146,9 @@ class LunaDevice extends Device {
                     await this.setCapabilityValue('meter_power.battery_cumulative_discharge', Number(powerStatsObj.cumulativeDisChargeCapacity)).catch(this.error);
                     this.setStoreValue("battery_cumulative_discharge", Number(powerStatsObj.cumulativeDisChargeCapacity));
                 }
-                if (detailStatsObj.realNrgKpi.dailyNrg.chgNrg) {
-                    await this.setCapabilityValue('meter_power.battery_charge', Number(detailStatsObj.realNrgKpi.dailyNrg.chgNrg)).catch(this.error);
-                    this.setStoreValue("battery_charge", Number(detailStatsObj.realNrgKpi.dailyNrg.chgNrg));
+                if (detailStatsObj.rptNrgKpi.dailyNrg.chgNrg) {
+                    await this.setCapabilityValue('meter_power.battery_charge', Number(detailStatsObj.rptNrgKpi.dailyNrg.chgNrg)).catch(this.error);
+                    this.setStoreValue("battery_charge", Number(detailStatsObj.rptNrgKpi.dailyNrg.chgNrg));
                 }
                 await this.setCapabilityValue('measure_battery', Number(powerInfo.flow["nodes"][4]['deviceTips']['SOC']));
                 this.setStoreValue("measure_battery", Number(powerInfo.flow["nodes"][4]['deviceTips']['SOC']));

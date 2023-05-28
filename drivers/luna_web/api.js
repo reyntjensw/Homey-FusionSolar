@@ -31,7 +31,7 @@ class LunaApi {
     async initializeSession() {
 
         var cookies_reg = await jar.getCookies("https://" + this.server + ".fusionsolar.huawei.com/");
-        console.log(cookies_reg)
+        // console.log(cookies_reg)
         const login_url = "https://" + this.server.slice(-3) + ".fusionsolar.huawei.com/unisso/v2/validateUser.action?"
 
         const params = new URLSearchParams({})
@@ -147,7 +147,7 @@ class LunaApi {
                 const res = await client
                     .get("https://" + this.server + ".fusionsolar.huawei.com/rest/pvms/web/station/v1/station/total-real-kpi?" + params.toString(), { withCredentials: true }
                     );
-                console.log(res);
+                // console.log(res);
                 return res
 
             } catch (error) {
@@ -241,12 +241,12 @@ class LunaApi {
         for (const val of response.data.data) {
             map.set(val["mocTypeName"], val["dn"])
         }
-        console.log(map)
+        // console.log(map)
 
         if (response.status !== 200) {
             console.error("getPowerStatus failed");
         }
-        console.log(response.data.data[1]["stationKey"])
+        // console.log(response.data.data[1]["stationKey"])
         return response.data.data[1]["stationKey"]
     }
     //not usefull
@@ -260,7 +260,7 @@ class LunaApi {
             try {
                 const res = await client
                     .get("https://" + this.server + ".fusionsolar.huawei.com/rest/pvms/web/station/v1/overview/energy-flow?" + params.toString());
-                console.log(res);
+                // console.log(res);
                 return res
 
             } catch (error) {
@@ -299,7 +299,7 @@ class LunaApi {
             try {
                 const res = await client
                     .get("https://" + this.server + ".fusionsolar.huawei.com/rest/pvms/web/station/v1/overview/energy-balance?" + params.toString());
-                console.log(res);
+                // console.log(res);
                 return res
 
             } catch (error) {
