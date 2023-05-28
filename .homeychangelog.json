@@ -160,5 +160,8 @@
   },
   "2.0.7": {
     "en": "Fixing energy tab value"
+  },
+  "2.0.8": {
+    "en": "Fixing documentation"
   }
 }
