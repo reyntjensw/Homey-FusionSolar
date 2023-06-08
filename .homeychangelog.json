@@ -163,5 +163,8 @@
   },
   "2.0.8": {
     "en": "Fixing documentation"
+  },
+  "2.0.9": {
+    "en": "Removing old API integration and implementing login / logout"
   }
 }
