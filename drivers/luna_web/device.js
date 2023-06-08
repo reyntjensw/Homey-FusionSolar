@@ -79,10 +79,14 @@ class LunaDevice extends Device {
         lunaApi = new LunaApi(username, password, server);
 
         await lunaApi.initializeSession();
-        this.getProductionData();
-
+        await this.getProductionData();
+        await lunaApi.logOut()
         this.homey.setInterval(async () => {
+            lunaApi = new LunaApi(username, password, server);
+
+            await lunaApi.initializeSession();
             await this.getProductionData();
+            await lunaApi.logOut()
         }, 1000 * 61 * 2);
     }
 
@@ -105,8 +109,8 @@ class LunaDevice extends Device {
             // console.log(powerStatsObj)
 
             detailStatsObj = await lunaApi.getStationList();
-            // console.log("detailStatsObj");
-            // console.log(detailStatsObj);
+            console.log("detailStatsObj");
+            console.log(detailStatsObj);
 
 
             if (detailStatsObj.realNrgKpi.dailyNrg.pvNrg) {
