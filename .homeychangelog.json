@@ -166,5 +166,8 @@
   },
   "2.0.9": {
     "en": "Removing old API integration and implementing login / logout"
+  },
+  "2.0.10": {
+    "en": "Revert back logout functionality"
   }
 }
