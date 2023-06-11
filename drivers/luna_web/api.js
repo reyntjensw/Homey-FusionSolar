@@ -4,7 +4,7 @@ const wrapper = require('axios-cookiejar-support').wrapper;
 const CookieJar = require('tough-cookie').CookieJar;
 
 const jar = new CookieJar();
-const client = wrapper(axios.create({ jar }));
+var client = wrapper(axios.create({ jar }));
 
 const date_ob = new Date();
 // const fetchSession = require("fetch-session");
@@ -31,7 +31,7 @@ class LunaApi {
     async initializeSession() {
 
         var cookies_reg = await jar.getCookies("https://" + this.server + ".fusionsolar.huawei.com/");
-        // console.log(cookies_reg)
+        console.log(cookies_reg)
         const login_url = "https://" + this.server.slice(-3) + ".fusionsolar.huawei.com/unisso/v2/validateUser.action?"
 
         const params = new URLSearchParams({})
@@ -327,38 +327,9 @@ class LunaApi {
     }
 
     async logOut() {
-        const params = new URLSearchParams({})
-        params.append("service", "https://" + this.server + ".fusionsolar.huawei.com")
-
-
-        const sendRequest = async () => {
-
-            try {
-                const res = await client
-                    .get("https://" + this.server + ".fusionsolar.huawei.com/unisess/v1/logout?" + params.toString());
-                //console.log(res);
-                return res
-
-            } catch (error) {
-                console.log(error)
-            }
-        };
-
-        const response = await sendRequest();
-        // console.log(response.data)
-        // const map = new Map()
-        // for (const val of response.data.data) {
-        //     map.set(val["mocTypeName"], val["dn"])
-        // }
-        // console.log(map)
-
-        if (response.status !== 200) {
-            console.error("logOut failed");
-        }
-        console.log("logged out")
         await this.clearCookies();
-        return response
-        // return map
+        client = wrapper(axios.create({ jar }));
+
     }
 }
 

@@ -80,13 +80,13 @@ class LunaDevice extends Device {
 
         await lunaApi.initializeSession();
         await this.getProductionData();
-        await lunaApi.logOut()
+        await lunaApi.logOut();
         this.homey.setInterval(async () => {
             lunaApi = new LunaApi(username, password, server);
 
             await lunaApi.initializeSession();
             await this.getProductionData();
-            await lunaApi.logOut()
+            await lunaApi.logOut();
         }, 1000 * 61 * 2);
     }
 
@@ -109,8 +109,8 @@ class LunaDevice extends Device {
             // console.log(powerStatsObj)
 
             detailStatsObj = await lunaApi.getStationList();
-            console.log("detailStatsObj");
-            console.log(detailStatsObj);
+            // console.log("detailStatsObj");
+            // console.log(detailStatsObj);
 
 
             if (detailStatsObj.realNrgKpi.dailyNrg.pvNrg) {
@@ -162,9 +162,8 @@ class LunaDevice extends Device {
                 await this.setCapabilityValue('meter_power.sun_power', powerStatsObj.currentPower).catch(this.error);
                 await this.setCapabilityValue('measure_power', powerStatsObj.currentPower * 1000).catch(this.error);
                 this.setStoreValue("measure_power", Number(powerStatsObj.currentPower));
-
             }
-            // await lunaApi.logOut()
+
 
             if (!this.getAvailable()) {
                 await this.setAvailable();

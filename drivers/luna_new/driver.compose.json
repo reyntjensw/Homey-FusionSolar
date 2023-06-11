@@ -1,0 +1,145 @@
+{
+    "name": {
+        "en": "Systems after 2023"
+    },
+    "class": "solarpanel",
+    "deprecated": true,
+    "capabilities": [
+        "meter_power.day",
+        "meter_power.month",
+        "meter_power.installed_capacity",
+        "meter_power.total_power",
+        "meter_power.discharge_power",
+        "meter_power.sun_power",
+        "meter_power.positive_active_energy",
+        "meter_power.negative_active_energy",
+        "meter_power.import_export",
+        "measure_power",
+        "measure_battery"
+    ],
+    "energy": {
+        "batteries": [
+            "OTHER"
+        ]
+    },
+    "capabilitiesOptions": {
+        "meter_power.day": {
+            "title": {
+                "en": "Daily yield",
+                "nl": "Dagopbrengst"
+            },
+            "units": {
+                "en": "kWh"
+            }
+        },
+        "meter_power.month": {
+            "title": {
+                "en": "Monthly yield",
+                "nl": "Maandopbrengst"
+            },
+            "units": {
+                "en": "kWh"
+            }
+        },
+        "meter_power.installed_capacity": {
+            "title": {
+                "en": "Installed capacity",
+                "nl": "Installatievermogen"
+            },
+            "unit": {
+                "en": "kWp"
+            }
+        },
+        "meter_power.total_power": {
+            "title": {
+                "en": "Total power",
+                "nl": "Totale opbrengst"
+            },
+            "units": {
+                "en": "kWh"
+            }
+        },
+        "meter_power.discharge_power": {
+            "title": {
+                "en": "Charge battery power",
+                "nl": "Batterij laad capaciteit"
+            },
+            "units": {
+                "en": "kW"
+            }
+        },
+        "meter_power.sun_power": {
+            "title": {
+                "en": "PV yield",
+                "nl": "Huidige PV Opbrengst"
+            },
+            "units": {
+                "en": "kW"
+            }
+        },
+        "meter_power.positive_active_energy": {
+            "title": {
+                "en": "Positive active energy",
+                "nl": "Positieve actieve energie"
+            },
+            "units": {
+                "en": "kW"
+            }
+        },
+        "meter_power.negative_active_energy": {
+            "title": {
+                "en": "Negative active energy",
+                "nl": "Negatieve actieve energie"
+            },
+            "units": {
+                "en": "kW"
+            }
+        },
+        "measure_power": {
+            "title": {
+                "en": "Load",
+                "nl": "Verbruik"
+            }
+        },
+        "meter_power.import_export": {
+            "title": {
+                "en": "Import(-)/Export(+) grid",
+                "nl": "Import(-)/Export(+) stroomnet"
+            },
+            "units": {
+                "en": "kW"
+            }
+        },
+        "measure_battery": {
+            "title": {
+                "en": "Battery SOC",
+                "nl": "Laadniveau batterij"
+            }
+        }
+    },
+    "platforms": [
+        "local"
+    ],
+    "connectivity": [],
+    "images": {
+        "small": "{{driverAssetsPath}}/images/small.png",
+        "large": "{{driverAssetsPath}}/images/large.png"
+    },
+    "pair": [
+        {
+            "id": "login_credentials",
+            "template": "login_credentials"
+        },
+        {
+            "id": "list_devices",
+            "template": "list_devices",
+            "navigation": {
+                "next": "add_devices"
+            }
+        },
+        {
+            "id": "add_devices",
+            "template": "add_devices"
+        }
+    ]
+}
