@@ -136,5 +136,44 @@
   },
   "1.0.57": {
     "en": "Revert back server config"
+  },
+  "2.0.0": {
+    "en": "This new release includes a new authentication method"
+  },
+  "2.0.1": {
+    "en": "Changing available values"
+  },
+  "2.0.2": {
+    "en": "Adding more properties"
+  },
+  "2.0.3": {
+    "en": "Adding SOC for battery"
+  },
+  "2.0.4": {
+    "en": "Adding region selection on init"
+  },
+  "2.0.5": {
+    "en": "Fixing backend server variable"
+  },
+  "2.0.6": {
+    "en": "Fixing old code"
+  },
+  "2.0.7": {
+    "en": "Fixing energy tab value"
+  },
+  "2.0.8": {
+    "en": "Fixing documentation"
+  },
+  "2.0.9": {
+    "en": "Removing old API integration and implementing login / logout"
+  },
+  "2.0.10": {
+    "en": "Revert back logout functionality"
+  },
+  "2.0.11": {
+    "en": "Fixing logout"
+  },
+  "2.0.12": {
+    "en": "Fixing app.json"
   }
 }

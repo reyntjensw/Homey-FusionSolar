@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "com.huawei.solar",
-  "version": "1.0.57",
+  "version": "2.0.12",
   "compatibility": ">=5.0.0",
   "brandColor": "#0362FA",
   "sdk": 3,
@@ -131,6 +131,213 @@
   "drivers": [
     {
       "name": {
+        "en": "Web"
+      },
+      "class": "solarpanel",
+      "capabilities": [
+        "meter_power.day",
+        "meter_power.month",
+        "meter_power.capacity",
+        "meter_power.total_power",
+        "meter_power.sun_power",
+        "meter_power.fed_to_grid",
+        "meter_power.import_from_grid",
+        "meter_power.battery_discharge",
+        "meter_power.battery_charge",
+        "meter_power.battery_cumulative_discharge",
+        "meter_power.active_power",
+        "measure_battery",
+        "measure_power"
+      ],
+      "energy": {
+        "batteries": [
+          "OTHER"
+        ]
+      },
+      "capabilitiesOptions": {
+        "meter_power.day": {
+          "title": {
+            "en": "Daily yield",
+            "nl": "Dagopbrengst"
+          },
+          "units": {
+            "en": "kWh"
+          }
+        },
+        "meter_power.month": {
+          "title": {
+            "en": "Monthly yield",
+            "nl": "Maandopbrengst"
+          },
+          "units": {
+            "en": "kWh"
+          }
+        },
+        "meter_power.capacity": {
+          "title": {
+            "en": "Installed capacity",
+            "nl": "Installatievermogen"
+          },
+          "units": {
+            "en": "kWp"
+          }
+        },
+        "meter_power.total_power": {
+          "title": {
+            "en": "Total power",
+            "nl": "Totale opbrengst"
+          },
+          "units": {
+            "en": "kWh"
+          }
+        },
+        "meter_power.sun_power": {
+          "title": {
+            "en": "PV yield",
+            "nl": "Huidige PV Opbrengst"
+          },
+          "units": {
+            "en": "kW"
+          }
+        },
+        "meter_power.fed_to_grid": {
+          "title": {
+            "en": "Export to grid"
+          },
+          "units": {
+            "en": "kW"
+          }
+        },
+        "meter_power.import_from_grid": {
+          "title": {
+            "en": "Import from grid"
+          },
+          "units": {
+            "en": "kW"
+          }
+        },
+        "meter_power.battery_discharge": {
+          "title": {
+            "en": "Battery discharge today"
+          }
+        },
+        "meter_power.battery_charge": {
+          "title": {
+            "en": "Battery charge today"
+          }
+        },
+        "meter_power.battery_cumulative_discharge": {
+          "title": {
+            "en": "Battery cumulative discharge"
+          }
+        },
+        "meter_power.active_power": {
+          "title": {
+            "en": "Active usage"
+          },
+          "units": {
+            "en": "kW"
+          }
+        }
+      },
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [],
+      "images": {
+        "small": "/drivers/luna_web/assets/images/small.png",
+        "large": "/drivers/luna_web/assets/images/large.png"
+      },
+      "pair": [
+        {
+          "id": "region"
+        },
+        {
+          "id": "login_credentials",
+          "template": "login_credentials"
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "luna_web",
+      "settings": [
+        {
+          "id": "username",
+          "type": "text",
+          "label": {
+            "en": "Huawei username"
+          }
+        },
+        {
+          "id": "password",
+          "type": "password",
+          "label": {
+            "en": "Huawei password"
+          }
+        },
+        {
+          "id": "battery",
+          "type": "checkbox",
+          "value": false,
+          "label": {
+            "en": "Home battery",
+            "nl": "Thuisbatterij"
+          }
+        },
+        {
+          "id": "backend_server",
+          "type": "dropdown",
+          "value": "region01eu5",
+          "label": {
+            "en": "Default server",
+            "nl": "Standaard server"
+          },
+          "values": [
+            {
+              "id": "region01eu5",
+              "label": {
+                "en": "region01eu5"
+              }
+            },
+            {
+              "id": "region02eu5",
+              "label": {
+                "en": "region02eu5"
+              }
+            },
+            {
+              "id": "region03eu5",
+              "label": {
+                "en": "region03eu5"
+              }
+            },
+            {
+              "id": "region04eu5",
+              "label": {
+                "en": "region04eu5"
+              }
+            },
+            {
+              "id": "region05eu5",
+              "label": {
+                "en": "region05eu5"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": {
         "en": "Systems after 2023"
       },
       "class": "solarpanel",
@@ -145,9 +352,7 @@
         "meter_power.negative_active_energy",
         "meter_power.import_export",
         "measure_power",
-        "measure_battery",
-        "inverter_temperature",
-        "solar_efficiency"
+        "measure_battery"
       ],
       "energy": {
         "batteries": [
@@ -358,9 +563,7 @@
         "meter_power.negative_active_energy",
         "meter_power.import_export",
         "measure_power",
-        "measure_battery",
-        "inverter_temperature",
-        "solar_efficiency"
+        "measure_battery"
       ],
       "energy": {
         "batteries": [
@@ -555,39 +758,5 @@
         }
       ]
     }
-  ],
-  "capabilities": {
-    "inverter_temperature": {
-      "type": "number",
-      "title": {
-        "en": "Inverter temp"
-      },
-      "uiComponent": "sensor",
-      "getable": true,
-      "setable": false,
-      "units": {
-        "en": "°C"
-      },
-      "min": -50,
-      "max": 100,
-      "step": 0.1,
-      "icon": "/assets/inverter.svg"
-    },
-    "solar_efficiency": {
-      "type": "number",
-      "title": {
-        "en": "Panels efficiency"
-      },
-      "uiComponent": "sensor",
-      "getable": true,
-      "setable": false,
-      "units": {
-        "en": "%"
-      },
-      "min": 0,
-      "max": 100,
-      "step": 0.1,
-      "icon": "/assets/efficiency.svg"
-    }
-  }
+  ]
 }

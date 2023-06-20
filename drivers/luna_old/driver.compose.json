@@ -3,6 +3,7 @@
         "en": "Systems before 2023"
     },
     "class": "solarpanel",
+    "deprecated": true,
     "capabilities": [
         "meter_power.day",
         "meter_power.month",
@@ -14,9 +15,7 @@
         "meter_power.negative_active_energy",
         "meter_power.import_export",
         "measure_power",
-        "measure_battery",
-        "inverter_temperature",
-        "solar_efficiency"
+        "measure_battery"
     ],
     "energy": {
         "batteries": [
