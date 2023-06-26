@@ -177,5 +177,9 @@ class LunaDevice extends Device {
         console.log('Huawei settings where changed');
         this.getProductionData();
     }
+
+    async onDeleted() {
+        this.homey.clearInterval();
+    }
 }
 module.exports = LunaDevice;
