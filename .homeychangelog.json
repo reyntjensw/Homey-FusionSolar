@@ -175,5 +175,8 @@
   },
   "2.0.12": {
     "en": "Fixing app.json"
+  },
+  "2.0.13": {
+    "en": "Fixing timeout"
   }
 }
