@@ -175,5 +175,11 @@
   },
   "2.0.12": {
     "en": "Fixing app.json"
+  },
+  "2.0.13": {
+    "en": "Fixing bug triggered by changing properties"
+  },
+  "2.0.14": {
+    "en": "Fixing bug triggered by changing properties"
   }
 }
