@@ -175,7 +175,7 @@ class LunaDevice extends Device {
     }
     async onSettings({ oldSettings, newSettings, changedKeys }) {
         console.log('Huawei settings where changed');
-        this.getProductionData();
+        // this.getProductionData();
     }
 
     async onDeleted() {
