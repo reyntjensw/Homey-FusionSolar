@@ -296,40 +296,40 @@
         {
           "id": "backend_server",
           "type": "dropdown",
-          "value": "region01eu5",
+          "value": "uni001eu5",
           "label": {
             "en": "Default server",
             "nl": "Standaard server"
           },
           "values": [
             {
-              "id": "region01eu5",
+              "id": "uni001eu5",
               "label": {
-                "en": "region01eu5"
+                "en": "uni001eu5"
               }
             },
             {
-              "id": "region02eu5",
+              "id": "uni002eu5",
               "label": {
-                "en": "region02eu5"
+                "en": "uni002eu5"
               }
             },
             {
-              "id": "region03eu5",
+              "id": "uni003eu5",
               "label": {
-                "en": "region03eu5"
+                "en": "uni003eu5"
               }
             },
             {
-              "id": "region04eu5",
+              "id": "uni004eu5",
               "label": {
-                "en": "region04eu5"
+                "en": "uni004eu5"
               }
             },
             {
-              "id": "region05eu5",
+              "id": "uni005eu5",
               "label": {
-                "en": "region05eu5"
+                "en": "uni005eu5"
               }
             }
           ]
@@ -507,40 +507,40 @@
         {
           "id": "backend_server",
           "type": "dropdown",
-          "value": "region01eu5",
+          "value": "uni001eu5",
           "label": {
             "en": "Default server",
             "nl": "Standaard server"
           },
           "values": [
             {
-              "id": "region01eu5",
+              "id": "uni001eu5",
               "label": {
-                "en": "region01eu5"
+                "en": "uni001eu5"
               }
             },
             {
-              "id": "region02eu5",
+              "id": "uni002eu5",
               "label": {
-                "en": "region02eu5"
+                "en": "uni002eu5"
               }
             },
             {
-              "id": "region03eu5",
+              "id": "uni003eu5",
               "label": {
-                "en": "region03eu5"
+                "en": "uni003eu5"
               }
             },
             {
-              "id": "region04eu5",
+              "id": "uni004eu5",
               "label": {
-                "en": "region04eu5"
+                "en": "uni004eu5"
               }
             },
             {
-              "id": "region05eu5",
+              "id": "uni005eu5",
               "label": {
-                "en": "region05eu5"
+                "en": "uni005eu5"
               }
             }
           ]
@@ -718,40 +718,40 @@
         {
           "id": "backend_server",
           "type": "dropdown",
-          "value": "region01eu5",
+          "value": "uni001eu5",
           "label": {
             "en": "Default server",
             "nl": "Standaard server"
           },
           "values": [
             {
-              "id": "region01eu5",
+              "id": "uni001eu5",
               "label": {
-                "en": "region01eu5"
+                "en": "uni001eu5"
               }
             },
             {
-              "id": "region02eu5",
+              "id": "uni002eu5",
               "label": {
-                "en": "region02eu5"
+                "en": "uni002eu5"
               }
             },
             {
-              "id": "region03eu5",
+              "id": "uni003eu5",
               "label": {
-                "en": "region03eu5"
+                "en": "uni003eu5"
               }
             },
             {
-              "id": "region04eu5",
+              "id": "uni004eu5",
               "label": {
-                "en": "region04eu5"
+                "en": "uni004eu5"
               }
             },
             {
-              "id": "region05eu5",
+              "id": "uni005eu5",
               "label": {
-                "en": "region05eu5"
+                "en": "uni005eu5"
               }
             }
           ]
